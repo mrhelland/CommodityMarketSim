@@ -36,10 +36,10 @@
             this.lblName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblName.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblName.ForeColor = System.Drawing.Color.White;
-            this.lblName.Location = new System.Drawing.Point(4, 4);
-            this.lblName.Margin = new System.Windows.Forms.Padding(3);
+            this.lblName.Location = new System.Drawing.Point(5, 5);
+            this.lblName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(165, 32);
+            this.lblName.Size = new System.Drawing.Size(220, 39);
             this.lblName.TabIndex = 0;
             this.lblName.Text = "Commodity Name";
             this.lblName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -52,10 +52,10 @@
             this.lblQuantity.BackColor = System.Drawing.Color.White;
             this.lblQuantity.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblQuantity.ForeColor = System.Drawing.Color.Black;
-            this.lblQuantity.Location = new System.Drawing.Point(4, 42);
-            this.lblQuantity.Margin = new System.Windows.Forms.Padding(3);
+            this.lblQuantity.Location = new System.Drawing.Point(5, 52);
+            this.lblQuantity.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lblQuantity.Name = "lblQuantity";
-            this.lblQuantity.Size = new System.Drawing.Size(165, 32);
+            this.lblQuantity.Size = new System.Drawing.Size(220, 39);
             this.lblQuantity.TabIndex = 1;
             this.lblQuantity.Text = "0";
             this.lblQuantity.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -68,24 +68,25 @@
             this.lblPrice.BackColor = System.Drawing.Color.White;
             this.lblPrice.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPrice.ForeColor = System.Drawing.Color.Black;
-            this.lblPrice.Location = new System.Drawing.Point(4, 80);
-            this.lblPrice.Margin = new System.Windows.Forms.Padding(3);
+            this.lblPrice.Location = new System.Drawing.Point(5, 98);
+            this.lblPrice.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lblPrice.Name = "lblPrice";
-            this.lblPrice.Size = new System.Drawing.Size(165, 32);
+            this.lblPrice.Size = new System.Drawing.Size(220, 39);
             this.lblPrice.TabIndex = 2;
             this.lblPrice.Text = "$0";
             this.lblPrice.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // CommodityDisplay
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.Controls.Add(this.lblPrice);
             this.Controls.Add(this.lblQuantity);
             this.Controls.Add(this.lblName);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "CommodityDisplay";
-            this.Size = new System.Drawing.Size(172, 119);
+            this.Size = new System.Drawing.Size(229, 145);
             this.ResumeLayout(false);
 
         }

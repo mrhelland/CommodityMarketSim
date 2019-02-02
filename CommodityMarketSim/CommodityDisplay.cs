@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MarketSimLibrary;
+using MarketFrameworkLibrary;
 
 namespace CommodityMarketSim {
     public partial class CommodityDisplay : UserControl {

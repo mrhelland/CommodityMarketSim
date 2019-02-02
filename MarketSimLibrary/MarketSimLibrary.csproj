@@ -4,4 +4,19 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Update="DataStorage.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DataStorage.xsd</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="DataStorage.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataStorage.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
 </Project>

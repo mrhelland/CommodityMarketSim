@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MarketSimLibrary
 {
-    public class Agent
+    public class Team
     {
 
         public event EventHandler ValueChanged;
@@ -27,7 +27,7 @@ namespace MarketSimLibrary
             get => transactions;
         }
 
-        public Agent(string sorttname, string fullname, float funds) {
+        public Team(string sorttname, string fullname, float funds) {
             this.sorttname = sorttname;
             this.fullname = fullname;
             this.funds = funds;
