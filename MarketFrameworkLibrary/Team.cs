@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MarketSimLibrary
+namespace MarketFrameworkLibrary
 {
     public class Team
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MarketSimLibrary
+namespace MarketFrameworkLibrary
 {
     public class Commodity
     {
