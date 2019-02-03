@@ -23,6 +23,7 @@ namespace CommodityMarketSim {
                 if(commodity != null) {
                     commodity.ValueChanged += this.ValueChanged;
                 }
+                UpdateUI();
             }
         }
 
@@ -31,9 +32,19 @@ namespace CommodityMarketSim {
         }
 
         private void ValueChanged(object sender, EventArgs e) {
+            UpdateUI();
+        }
+
+        private void UpdateUI() {
             this.lblName.Text = commodity.Name;
             this.lblPrice.Text = commodity.Price.ToString() + " bc";
             this.lblQuantity.Text = commodity.Available.ToString() + " units";
+            this.pbIcon.Image = imgsCommodities.Images[commodity.ImageIndex];
+            this.BackColor = Globals.GetFormBackcolor(commodity.Available > 0);
+        }
+
+        private void CommodityDisplay_Load(object sender, EventArgs e) {
+            UpdateUI();
         }
     }
 }

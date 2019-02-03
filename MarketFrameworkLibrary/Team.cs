@@ -7,18 +7,22 @@ namespace MarketFrameworkLibrary
     public class Team
     {
 
+        public static Team[] TeamList = {
+            new Team(1, "Team 1", 30000),
+            new Team(2, "Team 2", 30000),
+            new Team(3, "Team 3", 30000),
+            new Team(4, "Team 4", 30000)
+        };
+
         public event EventHandler ValueChanged;
 
-        private string sorttname;
-        private string fullname;
+        private string name;
         private float funds;
+        private int number;
         List<Transaction> transactions;
 
-        public string Sorttname {
-            get => sorttname;
-        }
-        public string Fullname {
-            get => fullname;
+        public string Name {
+            get => name;
         }
         public float Funds {
             get => funds;
@@ -26,11 +30,18 @@ namespace MarketFrameworkLibrary
         public List<Transaction> Transactions {
             get => transactions;
         }
+        public int Number {
+            get => number;
+        }
 
-        public Team(string sorttname, string fullname, float funds) {
-            this.sorttname = sorttname;
-            this.fullname = fullname;
+        public int ImageIndex {
+            get => number - 1;
+        }
+
+        public Team(int number, string name, float funds) {
+            this.name = name;
             this.funds = funds;
+            this.number = number;
             transactions = new List<Transaction>();
             OnValueChanged();
         }
