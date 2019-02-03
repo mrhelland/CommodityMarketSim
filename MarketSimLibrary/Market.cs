@@ -6,11 +6,11 @@ namespace MarketSimLibrary
 {
     public class Market
     {
-        private SortedList<string, Agent> agents;
+        private SortedList<string, Team> agents;
         private SortedList<string, Commodity> commodities;
         private PurchaseRound round;
 
-        public SortedList<string, Agent> Agents {
+        public SortedList<string, Team> Agents {
             get => agents;
         }
         public SortedList<string, Commodity> Commodities {
@@ -18,7 +18,7 @@ namespace MarketSimLibrary
         }
 
         public Market() {
-            agents = new SortedList<string, Agent>();
+            agents = new SortedList<string, Team>();
             commodities = new SortedList<string, Commodity>();
         }
 

@@ -7,7 +7,7 @@ namespace MarketSimLibrary
     public class Transaction
     {
         private DateTime timestamp;
-        private Agent agent;
+        private Team agent;
         private Commodity commodity;
         private int quantity;
         private float unitprice;
@@ -16,7 +16,7 @@ namespace MarketSimLibrary
         public DateTime Timestamp {
             get => timestamp;
         }
-        public Agent Agent {
+        public Team Agent {
             get => agent;
         }
         public Commodity Commodity {
@@ -35,7 +35,7 @@ namespace MarketSimLibrary
             get => success;
         }
 
-        public Transaction(DateTime t, Agent a, Commodity c, int qty, float price) {
+        public Transaction(DateTime t, Team a, Commodity c, int qty, float price) {
             timestamp = t;
             agent = a;
             commodity = c;

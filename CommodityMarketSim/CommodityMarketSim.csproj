@@ -74,6 +74,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PurchaseRoundDisplay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PurchaseRoundDisplay.Designer.cs">
+      <DependentUpon>PurchaseRoundDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TeamDisplay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TeamDisplay.Designer.cs">
+      <DependentUpon>TeamDisplay.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="CommodityDisplay.resx">
       <DependentUpon>CommodityDisplay.cs</DependentUpon>
     </EmbeddedResource>
@@ -87,6 +99,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="PurchaseRoundDisplay.resx">
+      <DependentUpon>PurchaseRoundDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TeamDisplay.resx">
+      <DependentUpon>TeamDisplay.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -101,9 +119,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MarketSimLibrary\MarketSimLibrary.csproj">
-      <Project>{b299202c-b8f3-484a-8cc0-1d151e273341}</Project>
-      <Name>MarketSimLibrary</Name>
+    <ProjectReference Include="..\MarketFrameworkLibrary\MarketFrameworkLibrary.csproj">
+      <Project>{c2b58097-1179-4856-bceb-cd35a4a53f52}</Project>
+      <Name>MarketFrameworkLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
