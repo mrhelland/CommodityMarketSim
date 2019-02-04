@@ -109,6 +109,7 @@
             this.btnFinish.TabIndex = 1;
             this.btnFinish.Text = "Finish";
             this.btnFinish.UseVisualStyleBackColor = true;
+            this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
             // MainForm
             // 

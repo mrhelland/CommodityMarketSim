@@ -39,7 +39,7 @@ namespace CommodityMarketSim {
         private void UpdateUI() {
             this.lblName.Text = commodity.Name;
             this.lblPrice.Text = commodity.Price.ToString() + " bc";
-            this.lblQuantity.Text = commodity.Available.ToString() + " units";
+            this.lblQuantity.Text = (commodity.Available - commodity.Pendingunits).ToString() + " units";
             this.pbIcon.Image = imgsCommodities.Images[commodity.ImageIndex];
             this.BackColor = Globals.GetFormBackcolor(commodity.Available > 0);
         }
@@ -62,24 +62,45 @@ namespace CommodityMarketSim {
             }
         }
 
-        private void CommodityDisplay_QueryContinueDrag(object sender, QueryContinueDragEventArgs e) {
-            if(e.Action == DragAction.Drop) {
-                
-            }
-        }
 
         private void CommodityDisplay_DragEnter(object sender, DragEventArgs e) {
             if(e.Data.GetDataPresent(DataFormats.Text)) {
-                e.Effect = DragDropEffects.Copy;
-            } else {
-                e.Effect = DragDropEffects.None;
+                Commodity matched = null;
+                string json = (string)e.Data.GetData(DataFormats.Text);
+                matched = GetJSONCommodity(json);
+                if(matched != null) {
+                    e.Effect = DragDropEffects.Copy;
+                    return;
+                } 
+            } 
+            e.Effect = DragDropEffects.None;
+        }
+
+        private Commodity GetJSONCommodity(string json) {
+            Commodity matched = null;
+            if(!String.IsNullOrEmpty(json)) {
+                Commodity fromJSON = Commodity.GetCommodity(json);
+                foreach(Commodity c in Market.CommodityList) {
+                    if(String.Compare(c.Name, fromJSON.Name) == 0) {
+                        matched = c;
+                        break;
+                    }
+                }
             }
+            return matched;
         }
 
 
 
         private void CommodityDisplay_DragDrop(object sender, DragEventArgs e) {
-
+            if(e.Data.GetDataPresent(DataFormats.Text)) {
+                //Commodity matched = null;
+                //string json = (string)e.Data.GetData(DataFormats.Text);
+                //matched = GetJSONCommodity(json);
+                //if(matched != null) {
+                //    UpdateUI();
+                //}
+            }
         }
 
     }

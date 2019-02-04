@@ -128,7 +128,6 @@
             this.Load += new System.EventHandler(this.CommodityDisplay_Load);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.CommodityDisplay_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.CommodityDisplay_DragEnter);
-            this.QueryContinueDrag += new System.Windows.Forms.QueryContinueDragEventHandler(this.CommodityDisplay_QueryContinueDrag);
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon)).EndInit();
             this.ResumeLayout(false);
 

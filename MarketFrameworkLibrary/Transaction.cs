@@ -54,8 +54,32 @@ namespace MarketFrameworkLibrary
         }
 
         public void ProcessTransaction() {
-            this.team.ProcessTransaction(this);
-            this.commodity.ProcessTransaction(this);
+            if(IsPossible()) {
+                this.team.ProcessTransaction(this);
+                this.commodity.ProcessTransaction(this);
+                this.success = true;
+            } else {
+                this.success = false;
+            }
+        }
+
+        public string GetHTML(int rownumber) {
+            string output = Properties.Settings.Default.HTMLTransactionTemplate;
+            if(rownumber % 2 == 0) {
+                output = output.Replace("%ROWSTYLE%", "even");
+            } else {
+                output = output.Replace("%ROWSTYLE%", "odd");
+            }
+            output = output.Replace("%TIME%", this.timestamp.ToShortTimeString());
+            output = output.Replace("%COMMODITY%", this.commodity.Name);
+            output = output.Replace("%QUANTITY%", this.quantity.ToString() + " unit(s)");
+            output = output.Replace("%PRICE%", this.unitprice.ToString() + " bc");
+            if(this.success) {
+                output = output.Replace("%SUCCESS%", "OK");
+            } else {
+                output = output.Replace("%SUCCESS%", "<b>FAILED</b>");
+            }
+            return output;
         }
 
         public static string GetJSON(Transaction t) {

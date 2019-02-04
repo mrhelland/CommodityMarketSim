@@ -64,8 +64,18 @@ namespace MarketFrameworkLibrary
             }
         }
 
-        public string GetReport() {
-
+        public string GetHTML() {
+            string output = Properties.Settings.Default.HTMLPageTemplate;
+            string tableoutput = " ";
+            int rowcount = 0;
+            foreach(Transaction t in this.Transactions) {
+                tableoutput += t.GetHTML(rowcount);
+                rowcount++;
+            }
+            output = output.Replace("%TEAM%", this.name);
+            output = output.Replace("%TRANSACTIONS%", tableoutput);
+            output = output.Replace("%FUNDS%", this.funds.ToString());
+            return output;
         }
 
         int IComparable<Team>.CompareTo(Team other) {

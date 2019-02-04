@@ -31,6 +31,11 @@ namespace MarketFrameworkLibrary
         private float price;
         private Commodity.Commodities type;
 
+        private int pendingunits;
+        public int Pendingunits {
+            get => pendingunits;
+        }
+
 
         public int Available {
             get => available;
@@ -53,6 +58,7 @@ namespace MarketFrameworkLibrary
             this.name = name;
             this.price = price;
             this.type = type;
+            this.pendingunits = 0;
             OnValueChanged();
         }
 
@@ -64,13 +70,20 @@ namespace MarketFrameworkLibrary
             }
         }
 
+        public void Reserve(int quantity) {
+            pendingunits += quantity;
+            OnValueChanged();
+        }
+
         internal void ProcessTransaction(Transaction t) {
+            this.pendingunits = 0;
             this.available -= t.Quantity;
             OnValueChanged();
         }
 
         internal void AdjustPrice(float marketratio) {
             this.price = (float)Math.Round( this.price * marketratio, 0);
+            OnValueChanged();
         }
 
         protected virtual void OnValueChanged() {

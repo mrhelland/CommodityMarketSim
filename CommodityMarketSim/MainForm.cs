@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MarketFrameworkLibrary;
+using System.IO;
 
 namespace CommodityMarketSim {
     public partial class MainForm : Form {
@@ -80,6 +81,21 @@ namespace CommodityMarketSim {
             }
         }
 
-
+        private void btnFinish_Click(object sender, EventArgs e) {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            fbd.ShowNewFolderButton = true;
+            fbd.RootFolder = Environment.SpecialFolder.MyComputer;
+            DialogResult result = fbd.ShowDialog();
+            if(result == DialogResult.OK || result == DialogResult.Yes) {
+                foreach(Team t in Market.TeamList) {
+                    StreamWriter sw = new StreamWriter(Path.Combine(fbd.SelectedPath, t.Name + ".html"));
+                    sw.Write(t.GetHTML());
+                    sw.Close();
+                }
+            } else {
+                MessageBox.Show(this, "No results were saved.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning );
+            }
+           
+        }
     }
 }

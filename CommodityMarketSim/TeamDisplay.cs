@@ -123,6 +123,7 @@ namespace CommodityMarketSim
                     }
                 }
                 this.Pending = new Transaction(DateTime.Now, this.team, matched, 1, matched.Price);
+                matched.Reserve(1);
             }
         }
 
@@ -134,7 +135,9 @@ namespace CommodityMarketSim
 
         private void pbCommodity_QueryContinueDrag(object sender, QueryContinueDragEventArgs e) {
             if(e.Action == DragAction.Drop) {
+                this.pending.Commodity.Reserve(-1);
                 this.Pending = null;
+                UpdateUI();
             }
         }
     }
