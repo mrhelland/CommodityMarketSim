@@ -1,25 +1,12 @@
 ﻿using System;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace MarketFrameworkLibrary
 {
-    public class Commodity
-    {
 
-        public static Commodity[] CommodityList = {
-            new Commodity(25, "Rubber Bands", 200, Commodity.Commodities.rubberband),
-            new Commodity(100, "Notecards", 200, Commodity.Commodities.notecard),
-            new Commodity(25, "Small Paper Clips", 200, Commodity.Commodities.sm_clip),
-            new Commodity(25, "Large Paper Clips", 300, Commodity.Commodities.lg_clip),
-            new Commodity(500, "Copy Paper", 300, Commodity.Commodities.paper),
-            new Commodity(100, "Popsicle Sticks", 300, Commodity.Commodities.sticks),
-            new Commodity(50, "Masking Tape", 1000, Commodity.Commodities.tape),
-            new Commodity(50, "String", 1000, Commodity.Commodities.@string),
-            new Commodity(5, "Colored Pencils", 300, Commodity.Commodities.pencilset),
-            new Commodity(20, "Round Stic Pen", 300, Commodity.Commodities.pen),
-            new Commodity(20, "No.2 Pencil", 300, Commodity.Commodities.pencil),
-            new Commodity(10, "12\" Ruler", 500, Commodity.Commodities.ruler),
-            new Commodity(10, "Scissors", 500, Commodity.Commodities.scissors)
-        };
+    public class Commodity : IComparable<Commodity>
+    {
 
         public enum Commodities {
             rubberband,
@@ -77,20 +64,13 @@ namespace MarketFrameworkLibrary
             }
         }
 
-        public Commodity Transfer(int quantity) {
-            if(HasStock(quantity)) {
-                available -= quantity;
-                OnValueChanged();
-                return new Commodity(quantity, this.name, this.price, (Commodity.Commodities)this.type);
-            } else {
-                return null;
-            }
+        internal void ProcessTransaction(Transaction t) {
+            this.available -= t.Quantity;
+            OnValueChanged();
         }
 
-        public void ProcessTransaction(Transaction verified) {
-            if(verified.IsPossible()) {
-                available -= verified.Quantity;
-            }
+        internal void AdjustPrice(float marketratio) {
+            this.price = (float)Math.Round( this.price * marketratio, 0);
         }
 
         protected virtual void OnValueChanged() {
@@ -98,6 +78,18 @@ namespace MarketFrameworkLibrary
             if(handler != null) {
                 handler(this, new EventArgs());
             }
+        }
+
+        public static string GetJSON(Commodity c) {
+            return JsonConvert.SerializeObject(c);
+        }
+
+        public static Commodity GetCommodity(string json) {
+            return JsonConvert.DeserializeObject<Commodity>(json);
+        }
+
+        int IComparable<Commodity>.CompareTo(Commodity other) {
+            return this.name.CompareTo(other.name);
         }
     }
 }

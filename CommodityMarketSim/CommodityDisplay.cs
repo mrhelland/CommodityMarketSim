@@ -16,8 +16,9 @@ namespace CommodityMarketSim {
         public Commodity Commodity {
             get => commodity;
             set {
-                if(value != null) {
+                if(commodity != null) {
                     commodity.ValueChanged -= this.ValueChanged;
+                    commodity = null;
                 }
                 commodity = value;
                 if(commodity != null) {
@@ -46,5 +47,40 @@ namespace CommodityMarketSim {
         private void CommodityDisplay_Load(object sender, EventArgs e) {
             UpdateUI();
         }
+
+        private void lblQuantity_Click(object sender, EventArgs e) {
+
+        }
+
+        private void lblPrice_Click(object sender, EventArgs e) {
+
+        }
+
+        private void pbIcon_MouseDown(object sender, MouseEventArgs e) {
+            if(commodity.Available > 0) {
+                pbIcon.DoDragDrop(Commodity.GetJSON(commodity), DragDropEffects.Copy);
+            }
+        }
+
+        private void CommodityDisplay_QueryContinueDrag(object sender, QueryContinueDragEventArgs e) {
+            if(e.Action == DragAction.Drop) {
+                
+            }
+        }
+
+        private void CommodityDisplay_DragEnter(object sender, DragEventArgs e) {
+            if(e.Data.GetDataPresent(DataFormats.Text)) {
+                e.Effect = DragDropEffects.Copy;
+            } else {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+
+
+        private void CommodityDisplay_DragDrop(object sender, DragEventArgs e) {
+
+        }
+
     }
 }

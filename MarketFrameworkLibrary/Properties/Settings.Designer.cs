@@ -33,5 +33,23 @@ namespace MarketFrameworkLibrary.Properties {
                 return ((string)(this["RoboticsCommodityMarketConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string HTMLPageTemplate {
+            get {
+                return ((string)(this["HTMLPageTemplate"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string HTMLTransactionTemplate {
+            get {
+                return ((string)(this["HTMLTransactionTemplate"]));
+            }
+        }
     }
 }
