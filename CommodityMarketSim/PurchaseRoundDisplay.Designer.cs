@@ -40,7 +40,7 @@
             this.flpTeams.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.flpTeams.AutoScroll = true;
-            this.flpTeams.BackColor = System.Drawing.Color.White;
+            this.flpTeams.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.flpTeams.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flpTeams.Location = new System.Drawing.Point(3, 4);
             this.flpTeams.Name = "flpTeams";
@@ -53,7 +53,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.flpCommodities.AutoScroll = true;
-            this.flpCommodities.BackColor = System.Drawing.Color.White;
+            this.flpCommodities.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.flpCommodities.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flpCommodities.Location = new System.Drawing.Point(3, 171);
             this.flpCommodities.Name = "flpCommodities";

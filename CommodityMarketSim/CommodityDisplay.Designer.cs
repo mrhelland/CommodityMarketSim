@@ -112,6 +112,7 @@
             this.imgsCommodities.Images.SetKeyName(10, "pencil.png");
             this.imgsCommodities.Images.SetKeyName(11, "ruler.png");
             this.imgsCommodities.Images.SetKeyName(12, "scissors.png");
+            this.imgsCommodities.Images.SetKeyName(13, "none.png");
             // 
             // CommodityDisplay
             // 

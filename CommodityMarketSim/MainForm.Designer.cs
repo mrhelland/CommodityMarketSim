@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.btnNextRound = new System.Windows.Forms.Button();
             this.tlpTeams = new System.Windows.Forms.TableLayoutPanel();
             this.tlpCommodities = new System.Windows.Forms.TableLayoutPanel();
@@ -120,8 +121,9 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.tlpCommodities);
             this.Controls.Add(this.tlpTeams);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.Text = "Commodity Market Simulator";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
