@@ -21,7 +21,8 @@ namespace MarketFrameworkLibrary
             pen,
             pencil,
             ruler,
-            scissors
+            scissors,
+            none
         }
 
         public event EventHandler ValueChanged;

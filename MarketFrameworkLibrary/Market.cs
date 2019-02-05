@@ -20,7 +20,8 @@ namespace MarketFrameworkLibrary
             new Commodity(20, "Round Stic Pen", 300, Commodity.Commodities.pen),
             new Commodity(20, "No.2 Pencil", 300, Commodity.Commodities.pencil),
             new Commodity(10, "12\" Ruler", 500, Commodity.Commodities.ruler),
-            new Commodity(10, "Scissors", 500, Commodity.Commodities.scissors)
+            new Commodity(10, "Scissors", 500, Commodity.Commodities.scissors),
+            new Commodity(10000, "Nothing", 0, Commodity.Commodities.none)
         };
 
         public static Team[] TeamList = {
