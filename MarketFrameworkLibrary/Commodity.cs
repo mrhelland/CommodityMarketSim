@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace MarketFrameworkLibrary
 {
 
-    public class Commodity : IComparable<Commodity>
+    public class Commodity : IComparable<Commodity>, IEqualityComparer<Commodity>, IEquatable<Commodity>
     {
 
         public enum Commodities {
@@ -104,5 +104,29 @@ namespace MarketFrameworkLibrary
         int IComparable<Commodity>.CompareTo(Commodity other) {
             return this.name.CompareTo(other.name);
         }
+
+        bool IEqualityComparer<Commodity>.Equals(Commodity x, Commodity y) {
+            if(x == null || y == null) {
+                throw new NullReferenceException("The values are null. Did you really intend to compare their equality?");
+            } else {
+                return x.Equals(y);
+            }
+
+        }
+
+        int IEqualityComparer<Commodity>.GetHashCode(Commodity obj) {
+            return obj.name.GetHashCode();
+        }
+
+        bool IEquatable<Commodity>.Equals(Commodity other) {
+            if(other == null) {
+                return false;
+            } else if(this.name.Equals(other.name)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
     }
 }

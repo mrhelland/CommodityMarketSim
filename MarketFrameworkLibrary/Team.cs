@@ -64,16 +64,28 @@ namespace MarketFrameworkLibrary
             }
         }
 
+        public SortedList<Commodity, int> GetCommodityTotals() {
+            SortedList<Commodity, int> totals = new SortedList<Commodity, int>();
+
+            return totals;
+        }
+
         public string GetHTML() {
             string output = Properties.Settings.Default.HTMLPageTemplate;
-            string tableoutput = " ";
+            string transactionsummary = " ";
             int rowcount = 0;
             foreach(Transaction t in this.Transactions) {
-                tableoutput += t.GetHTML(rowcount);
+                transactionsummary += t.GetHTML(rowcount);
                 rowcount++;
             }
+            string commoditysummary = Properties.Settings.Default.HTMLCommodityTemplate;
+            SortedList<Commodity, int> totals = GetCommodityTotals();
+            foreach(Commodity c in totals.Keys) {
+                commoditysummary = commoditysummary.Replace("", "");
+            }
             output = output.Replace("%TEAM%", this.name);
-            output = output.Replace("%TRANSACTIONS%", tableoutput);
+            output = output.Replace("%TRANSACTIONS%", transactionsummary);
+            output = output.Replace("%COMMODITIES%", commoditysummary);
             output = output.Replace("%FUNDS%", this.funds.ToString());
             return output;
         }

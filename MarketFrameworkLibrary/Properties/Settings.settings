@@ -62,5 +62,12 @@
     &lt;td&gt;%SUCCESS%&lt;/td&gt;
 &lt;/tr&gt;</Value>
     </Setting>
+    <Setting Name="HTMLCommodityTemplate" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">&lt;tr class="%ROWSTYLE%"&gt;
+    &lt;td&gt;%COMMODITY%&lt;/td&gt;
+    &lt;td&gt;%QUANTITY%&lt;/td&gt;
+    &lt;td&gt;%TOTALPRICE%&lt;/td&gt;
+&lt;/tr&gt;</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

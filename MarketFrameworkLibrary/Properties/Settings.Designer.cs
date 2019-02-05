@@ -92,5 +92,15 @@ namespace MarketFrameworkLibrary.Properties {
                 return ((string)(this["HTMLTransactionTemplate"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<tr class=\"%ROWSTYLE%\">\r\n    <td>%COMMODITY%</td>\r\n    <td>%QUANTITY%</td>\r\n    <" +
+            "td>%TOTALPRICE%</td>\r\n</tr>")]
+        public string HTMLCommodityTemplate {
+            get {
+                return ((string)(this["HTMLCommodityTemplate"]));
+            }
+        }
     }
 }
