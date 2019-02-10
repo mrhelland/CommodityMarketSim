@@ -1,37 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Runtime.Serialization;
 
 namespace MarketFrameworkLibrary
 {
-    public class Team
+    public class Team : IComparable<Team>
     {
-
-        public static Team[] TeamList = {
-            new Team(1, "Team 1", 30000),
-            new Team(2, "Team 2", 30000),
-            new Team(3, "Team 3", 30000),
-            new Team(4, "Team 4", 30000)
-        };
-
         public event EventHandler ValueChanged;
 
         private string name;
         private float funds;
         private int number;
-        List<Transaction> transactions;
+        List<Transaction> processedtransactions;
 
         public string Name {
             get => name;
+            set => name = value;
         }
         public float Funds {
             get => funds;
+            set => funds = value;
         }
         public List<Transaction> Transactions {
-            get => transactions;
+            get => processedtransactions;
+            set => processedtransactions = value;
         }
         public int Number {
             get => number;
+            set => number = value;
         }
 
         public int ImageIndex {
@@ -42,7 +39,7 @@ namespace MarketFrameworkLibrary
             this.name = name;
             this.funds = funds;
             this.number = number;
-            transactions = new List<Transaction>();
+            processedtransactions = new List<Transaction>();
             OnValueChanged();
         }
 
@@ -54,11 +51,10 @@ namespace MarketFrameworkLibrary
             }
         }
 
-        public void ProcessTransaction(Transaction verified) {
-            if(verified.IsPossible()) {
-                this.funds -= verified.Totalprice;
-                transactions.Add(verified);
-            }
+        internal void ProcessTransaction(Transaction verified) {
+            this.funds -= verified.Totalprice;
+            processedtransactions.Add(verified);
+            OnValueChanged();
         }
 
         protected virtual void OnValueChanged() {
@@ -66,6 +62,36 @@ namespace MarketFrameworkLibrary
             if(handler != null) {
                 handler(this, new EventArgs());
             }
+        }
+
+        public SortedList<Commodity, int> GetCommodityTotals() {
+            SortedList<Commodity, int> totals = new SortedList<Commodity, int>();
+
+            return totals;
+        }
+
+        public string GetHTML() {
+            string output = Properties.Settings.Default.HTMLPageTemplate;
+            string transactionsummary = " ";
+            int rowcount = 0;
+            foreach(Transaction t in this.Transactions) {
+                transactionsummary += t.GetHTML(rowcount);
+                rowcount++;
+            }
+            string commoditysummary = Properties.Settings.Default.HTMLCommodityTemplate;
+            SortedList<Commodity, int> totals = GetCommodityTotals();
+            foreach(Commodity c in totals.Keys) {
+                commoditysummary = commoditysummary.Replace("", "");
+            }
+            output = output.Replace("%TEAM%", this.name);
+            output = output.Replace("%TRANSACTIONS%", transactionsummary);
+            output = output.Replace("%COMMODITIES%", commoditysummary);
+            output = output.Replace("%FUNDS%", this.funds.ToString());
+            return output;
+        }
+
+        int IComparable<Team>.CompareTo(Team other) {
+            return this.number.CompareTo(other.number);
         }
     }
 }

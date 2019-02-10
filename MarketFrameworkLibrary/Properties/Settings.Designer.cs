@@ -33,5 +33,74 @@ namespace MarketFrameworkLibrary.Properties {
                 return ((string)(this["RoboticsCommodityMarketConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <style>
+            BODY {
+                font-family: Arial;
+                font-size: 14px;
+                color: black;
+            }
+            
+            table {
+                border: 2px solid black;
+                border-collapse: collapse;
+                width: 400px;
+            }
+            
+            td, th {
+                border: 1px solid gray;
+                padding: 5px;
+            }
+            .odd {
+                background-color: #EEEEEE;
+            }
+            .even {
+                background-color: #FFFFFF;
+            }
+        
+        </style>
+    </head>
+    <body>
+        <H1>%TEAM%</H1>
+        <h2>Purchase Summary</h2>
+        <table>
+            %TRANSACTIONS%
+        </table>
+        
+        <h2>Closing Balance : %FUNDS%</h2>
+    </body>
+</html>
+")]
+        public string HTMLPageTemplate {
+            get {
+                return ((string)(this["HTMLPageTemplate"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<tr class=\"%ROWSTYLE%\">\r\n    <td>%TIME%</td>\r\n    <td>%COMMODITY%</td>\r\n    <td>%" +
+            "QUANTITY%</td>\r\n    <td>%PRICE%</td>\r\n    <td>%SUCCESS%</td>\r\n</tr>")]
+        public string HTMLTransactionTemplate {
+            get {
+                return ((string)(this["HTMLTransactionTemplate"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<tr class=\"%ROWSTYLE%\">\r\n    <td>%COMMODITY%</td>\r\n    <td>%QUANTITY%</td>\r\n    <" +
+            "td>%TOTALPRICE%</td>\r\n</tr>")]
+        public string HTMLCommodityTemplate {
+            get {
+                return ((string)(this["HTMLCommodityTemplate"]));
+            }
+        }
     }
 }

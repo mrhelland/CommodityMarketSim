@@ -28,30 +28,102 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.flpTeams = new System.Windows.Forms.FlowLayoutPanel();
+            this.flpCommodities = new System.Windows.Forms.FlowLayoutPanel();
+            this.Label1 = new System.Windows.Forms.Label();
+            this.lblRoundNumber = new System.Windows.Forms.Label();
+            this.btnFinish = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // listView1
+            // flpTeams
             // 
-            this.listView1.Location = new System.Drawing.Point(4, 4);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(886, 155);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.flpTeams.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.flpTeams.AutoScroll = true;
+            this.flpTeams.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.flpTeams.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.flpTeams.Location = new System.Drawing.Point(3, 4);
+            this.flpTeams.Name = "flpTeams";
+            this.flpTeams.Size = new System.Drawing.Size(822, 160);
+            this.flpTeams.TabIndex = 0;
+            // 
+            // flpCommodities
+            // 
+            this.flpCommodities.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.flpCommodities.AutoScroll = true;
+            this.flpCommodities.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.flpCommodities.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.flpCommodities.Location = new System.Drawing.Point(3, 171);
+            this.flpCommodities.Name = "flpCommodities";
+            this.flpCommodities.Size = new System.Drawing.Size(822, 291);
+            this.flpCommodities.TabIndex = 1;
+            // 
+            // Label1
+            // 
+            this.Label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.Label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Label1.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label1.ForeColor = System.Drawing.Color.White;
+            this.Label1.Location = new System.Drawing.Point(831, 4);
+            this.Label1.Name = "Label1";
+            this.Label1.Size = new System.Drawing.Size(76, 34);
+            this.Label1.TabIndex = 2;
+            this.Label1.Text = "Round";
+            this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblRoundNumber
+            // 
+            this.lblRoundNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblRoundNumber.BackColor = System.Drawing.Color.White;
+            this.lblRoundNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblRoundNumber.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRoundNumber.ForeColor = System.Drawing.Color.Black;
+            this.lblRoundNumber.Location = new System.Drawing.Point(831, 38);
+            this.lblRoundNumber.Name = "lblRoundNumber";
+            this.lblRoundNumber.Size = new System.Drawing.Size(76, 126);
+            this.lblRoundNumber.TabIndex = 3;
+            this.lblRoundNumber.Text = "1";
+            this.lblRoundNumber.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnFinish
+            // 
+            this.btnFinish.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFinish.Enabled = false;
+            this.btnFinish.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFinish.Location = new System.Drawing.Point(830, 397);
+            this.btnFinish.Name = "btnFinish";
+            this.btnFinish.Size = new System.Drawing.Size(77, 65);
+            this.btnFinish.TabIndex = 4;
+            this.btnFinish.Text = "Finish";
+            this.btnFinish.UseVisualStyleBackColor = true;
+            this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
             // PurchaseRoundDisplay
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.btnFinish);
+            this.Controls.Add(this.lblRoundNumber);
+            this.Controls.Add(this.Label1);
+            this.Controls.Add(this.flpCommodities);
+            this.Controls.Add(this.flpTeams);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "PurchaseRoundDisplay";
-            this.Size = new System.Drawing.Size(893, 493);
+            this.Size = new System.Drawing.Size(910, 465);
+            this.Load += new System.EventHandler(this.PurchaseRoundDisplay_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.FlowLayoutPanel flpTeams;
+        private System.Windows.Forms.FlowLayoutPanel flpCommodities;
+        private System.Windows.Forms.Label Label1;
+        private System.Windows.Forms.Label lblRoundNumber;
+        private System.Windows.Forms.Button btnFinish;
     }
 }

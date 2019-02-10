@@ -10,5 +10,64 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\RoboticsCommodityMarket.mdf;Integrated Security=True;Connect Timeout=30</Value>
     </Setting>
+    <Setting Name="HTMLPageTemplate" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;&lt;/title&gt;
+        &lt;style&gt;
+            BODY {
+                font-family: Arial;
+                font-size: 14px;
+                color: black;
+            }
+            
+            table {
+                border: 2px solid black;
+                border-collapse: collapse;
+                width: 400px;
+            }
+            
+            td, th {
+                border: 1px solid gray;
+                padding: 5px;
+            }
+            .odd {
+                background-color: #EEEEEE;
+            }
+            .even {
+                background-color: #FFFFFF;
+            }
+        
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;H1&gt;%TEAM%&lt;/H1&gt;
+        &lt;h2&gt;Purchase Summary&lt;/h2&gt;
+        &lt;table&gt;
+            %TRANSACTIONS%
+        &lt;/table&gt;
+        
+        &lt;h2&gt;Closing Balance : %FUNDS%&lt;/h2&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</Value>
+    </Setting>
+    <Setting Name="HTMLTransactionTemplate" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">&lt;tr class="%ROWSTYLE%"&gt;
+    &lt;td&gt;%TIME%&lt;/td&gt;
+    &lt;td&gt;%COMMODITY%&lt;/td&gt;
+    &lt;td&gt;%QUANTITY%&lt;/td&gt;
+    &lt;td&gt;%PRICE%&lt;/td&gt;
+    &lt;td&gt;%SUCCESS%&lt;/td&gt;
+&lt;/tr&gt;</Value>
+    </Setting>
+    <Setting Name="HTMLCommodityTemplate" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">&lt;tr class="%ROWSTYLE%"&gt;
+    &lt;td&gt;%COMMODITY%&lt;/td&gt;
+    &lt;td&gt;%QUANTITY%&lt;/td&gt;
+    &lt;td&gt;%TOTALPRICE%&lt;/td&gt;
+&lt;/tr&gt;</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

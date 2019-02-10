@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using MarketFrameworkLibrary;
 
 namespace CommodityMarketSim {
     public class Globals {
+
+
 
         public enum UIIndicatorLevels {
             NotAvailable,

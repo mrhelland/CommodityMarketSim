@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <style>
+            BODY {
+                font-family: Arial;
+                font-size: 14px;
+                color: black;
+            }
+            
+            table {
+                border: 2px solid black;
+                border-collapse: collapse;
+                width: 400px;
+            }
+            
+            td, th {
+                border: 1px solid gray;
+                padding: 5px;
+            }
+            .odd {
+                background-color: #EEEEEE;
+            }
+            .even {
+                background-color: #FFFFFF;
+            }
+        
+        </style>
+    </head>
+    <body>
+        <h1>%TEAM%</h1>
+        <h2>%DATE%</h2>
+        
+        <h3>Purchase History</h3>
+        <table>
+            %TRANSACTIONS%
+        </table>
+        
+        <h3>Commodity Totals</h3>
+        <table>
+            %COMMODITIES%
+        </table>
+        
+        
+        <h2>Closing Balance : %FUNDS%</h2>
+    </body>
+</html>
+

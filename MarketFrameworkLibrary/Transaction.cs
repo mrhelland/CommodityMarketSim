@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace MarketFrameworkLibrary
 {
     public class Transaction
     {
         private DateTime timestamp;
-        private Team agent;
+        private Team team;
         private Commodity commodity;
         private int quantity;
         private float unitprice;
@@ -17,7 +18,7 @@ namespace MarketFrameworkLibrary
             get => timestamp;
         }
         public Team Agent {
-            get => agent;
+            get => team;
         }
         public Commodity Commodity {
             get => commodity;
@@ -37,7 +38,7 @@ namespace MarketFrameworkLibrary
 
         public Transaction(DateTime t, Team a, Commodity c, int qty, float price) {
             timestamp = t;
-            agent = a;
+            team = a;
             commodity = c;
             quantity = qty;
             unitprice = price;
@@ -45,11 +46,49 @@ namespace MarketFrameworkLibrary
         }
 
         public bool IsPossible() {
-            if(agent.HasFunds(Totalprice) && commodity.HasStock(quantity)) {
+            if(team.HasFunds(Totalprice) && commodity.HasStock(quantity)) {
                 return true;
             } else {
                 return false;
             }
         }
+
+        public void ProcessTransaction() {
+            if(IsPossible()) {
+                this.team.ProcessTransaction(this);
+                this.commodity.ProcessTransaction(this);
+                this.success = true;
+            } else {
+                this.success = false;
+            }
+        }
+
+        public string GetHTML(int rownumber) {
+            string output = Properties.Settings.Default.HTMLTransactionTemplate;
+            if(rownumber % 2 == 0) {
+                output = output.Replace("%ROWSTYLE%", "even");
+            } else {
+                output = output.Replace("%ROWSTYLE%", "odd");
+            }
+            output = output.Replace("%TIME%", this.timestamp.ToShortTimeString());
+            output = output.Replace("%COMMODITY%", this.commodity.Name);
+            output = output.Replace("%QUANTITY%", this.quantity.ToString() + " unit(s)");
+            output = output.Replace("%PRICE%", this.unitprice.ToString() + " bc");
+            if(this.success) {
+                output = output.Replace("%SUCCESS%", "OK");
+            } else {
+                output = output.Replace("%SUCCESS%", "<b>FAILED</b>");
+            }
+            return output;
+        }
+
+        public static string GetJSON(Transaction t) {
+            return JsonConvert.SerializeObject(t);
+        }
+
+        public static Transaction GetTransaction(string json) {
+            return JsonConvert.DeserializeObject<Transaction>(json);
+        }
+
     }
 }

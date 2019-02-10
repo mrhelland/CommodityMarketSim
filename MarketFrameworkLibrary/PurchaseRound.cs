@@ -6,34 +6,37 @@ namespace MarketFrameworkLibrary
 {
     public class PurchaseRound
     {
-        private static int LastRoundNumber = 0;
         private int number;
-        private List<Transaction> transactions;
         public int Number {
             get => number;
         }
+
+        private List<Transaction> transactions;
         public List<Transaction> Transactions {
             get => transactions;
+            set => transactions = value;
         }
 
-        public PurchaseRound() {
-            this.number = LastRoundNumber + 1;
-            LastRoundNumber = this.number;
+        public PurchaseRound(int number) {
+            this.number = number;
             transactions = new List<Transaction>();
         }
 
-        public void AddTransaction(Transaction attempt) {
-            if(!attempt.IsPossible()) {
-                throw new InvalidOperationException("This transaction is not possible.");
-            } else {
-                transactions.Add(attempt);
+        public void ProcessTransactions() {
+            List<Transaction> processed = new List<Transaction>();
+            foreach(Transaction t in transactions) {
+                t.ProcessTransaction();
+                processed.Add(t);
             }
+            AdjustMarket(processed);
         }
 
-        public void Complete() {
-            foreach(Transaction t in transactions) {
-                t.Agent.ProcessTransaction(t);
-                t.Commodity.ProcessTransaction(t);
+        private void AdjustMarket(List<Transaction> processed) {
+            foreach(Commodity c in Market.CommodityList) {
+                c.AdjustPrice(Utility.RandomNumber(0.94f, 0.98f));
+            }
+            foreach(Transaction t in processed) {
+                t.Commodity.AdjustPrice(Utility.RandomNumber(0.04f, 0.16f) + 1.0f);
             }
         }
     }

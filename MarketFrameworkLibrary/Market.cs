@@ -6,41 +6,39 @@ namespace MarketFrameworkLibrary
 {
     public class Market
     {
-        private SortedList<int, Team> teams;
-        private SortedList<int, Commodity> commodities;
-        private PurchaseRound round;
 
-        public SortedList<int, Team> Agents {
-            get => teams;
-        }
-        public SortedList<int, Commodity> Commodities {
-            get => commodities;
+        public static Commodity[] CommodityList = {
+            new Commodity(25, "Rubber Bands", 200, Commodity.Commodities.rubberband),
+            new Commodity(100, "Notecards", 200, Commodity.Commodities.notecard),
+            new Commodity(25, "Small Paper Clips", 200, Commodity.Commodities.sm_clip),
+            new Commodity(25, "Large Paper Clips", 300, Commodity.Commodities.lg_clip),
+            new Commodity(500, "Copy Paper", 300, Commodity.Commodities.paper),
+            new Commodity(100, "Popsicle Sticks", 300, Commodity.Commodities.sticks),
+            new Commodity(50, "Masking Tape", 1000, Commodity.Commodities.tape),
+            new Commodity(50, "String", 1000, Commodity.Commodities.@string),
+            new Commodity(5, "Colored Pencils", 300, Commodity.Commodities.pencilset),
+            new Commodity(20, "Round Stic Pen", 300, Commodity.Commodities.pen),
+            new Commodity(20, "No.2 Pencil", 300, Commodity.Commodities.pencil),
+            new Commodity(10, "12\" Ruler", 500, Commodity.Commodities.ruler),
+            new Commodity(10, "Scissors", 500, Commodity.Commodities.scissors),
+            new Commodity(10000, "Nothing", 0, Commodity.Commodities.none)
+        };
+
+        public static Team[] TeamList = {
+            new Team(1, "Team 1", 30000),
+            new Team(2, "Team 2", 30000),
+            new Team(3, "Team 3", 30000),
+            new Team(4, "Team 4", 30000)
+        };
+
+        private List<PurchaseRound> rounds;
+        public List<PurchaseRound> Rounds {
+            get => rounds;
+            set => rounds = value;
         }
 
         public Market() {
-            teams = new SortedList<int, Team>();
-            commodities = new SortedList<int, Commodity>();
-        }
-
-        public void BuildMarket() {
-            for(int i = 0; i < Team.TeamList.Length; i++) {
-                teams.Add(i, Team.TeamList[i]);
-            }
-            for(int i = 0; i < Commodity.CommodityList.Length; i++) {
-                commodities.Add(i, Commodity.CommodityList[i]);
-            }
-            for(int i = 1; i <= 4; i++) {
-                teams.Add(i, new Team(i, "Team " + i.ToString(), 30000));
-
-            }
-        }
-
-        public void StartRound() {
-            round = new PurchaseRound();
-        }
-
-        public void EndRound() {
-
+            rounds = new List<PurchaseRound>();
         }
 
     }
