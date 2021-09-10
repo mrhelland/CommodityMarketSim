@@ -25,10 +25,12 @@ namespace MarketFrameworkLibrary
         };
 
         public static Team[] TeamList = {
-            new Team(1, "Team 1", 30000),
-            new Team(2, "Team 2", 30000),
-            new Team(3, "Team 3", 30000),
-            new Team(4, "Team 4", 30000)
+            new Team(1, "Team 1", 25000),
+            new Team(2, "Team 2", 25000),
+            new Team(3, "Team 3", 25000),
+            new Team(4, "Team 4", 25000),
+            new Team(5, "Team 5", 25000),
+            new Team(6, "Team 6", 25000)
         };
 
         private List<PurchaseRound> rounds;

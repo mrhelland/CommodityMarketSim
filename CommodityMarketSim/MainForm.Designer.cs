@@ -38,9 +38,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNextRound.Font = new System.Drawing.Font("Calibri", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNextRound.Location = new System.Drawing.Point(23, 3);
+            this.btnNextRound.Location = new System.Drawing.Point(23, 155);
             this.btnNextRound.Name = "btnNextRound";
-            this.btnNextRound.Size = new System.Drawing.Size(457, 94);
+            this.btnNextRound.Size = new System.Drawing.Size(734, 94);
             this.btnNextRound.TabIndex = 0;
             this.btnNextRound.Text = "Next Round";
             this.btnNextRound.UseVisualStyleBackColor = true;
@@ -58,7 +58,7 @@
             this.tlpTeams.Name = "tlpTeams";
             this.tlpTeams.RowCount = 1;
             this.tlpTeams.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpTeams.Size = new System.Drawing.Size(1006, 100);
+            this.tlpTeams.Size = new System.Drawing.Size(1560, 100);
             this.tlpTeams.TabIndex = 3;
             // 
             // tlpCommodities
@@ -69,11 +69,11 @@
             this.tlpCommodities.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpCommodities.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpCommodities.ForeColor = System.Drawing.Color.White;
-            this.tlpCommodities.Location = new System.Drawing.Point(12, 228);
+            this.tlpCommodities.Location = new System.Drawing.Point(12, 532);
             this.tlpCommodities.Name = "tlpCommodities";
             this.tlpCommodities.RowCount = 1;
             this.tlpCommodities.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpCommodities.Size = new System.Drawing.Size(1006, 317);
+            this.tlpCommodities.Size = new System.Drawing.Size(1560, 317);
             this.tlpCommodities.TabIndex = 4;
             // 
             // tableLayoutPanel1
@@ -95,7 +95,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1006, 100);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1560, 404);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
             // btnFinish
@@ -104,9 +104,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnFinish.Font = new System.Drawing.Font("Calibri", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFinish.Location = new System.Drawing.Point(526, 3);
+            this.btnFinish.Location = new System.Drawing.Point(803, 155);
             this.btnFinish.Name = "btnFinish";
-            this.btnFinish.Size = new System.Drawing.Size(457, 94);
+            this.btnFinish.Size = new System.Drawing.Size(734, 94);
             this.btnFinish.TabIndex = 1;
             this.btnFinish.Text = "Finish";
             this.btnFinish.UseVisualStyleBackColor = true;
@@ -117,7 +117,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(1030, 557);
+            this.ClientSize = new System.Drawing.Size(1584, 861);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.tlpCommodities);
             this.Controls.Add(this.tlpTeams);

@@ -115,6 +115,7 @@
             this.pbCommodity.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbCommodity.TabIndex = 7;
             this.pbCommodity.TabStop = false;
+            this.pbCommodity.Click += new System.EventHandler(this.pbCommodity_Click);
             this.pbCommodity.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbCommodity_DragDrop);
             this.pbCommodity.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbCommodity_DragEnter);
             this.pbCommodity.QueryContinueDrag += new System.Windows.Forms.QueryContinueDragEventHandler(this.pbCommodity_QueryContinueDrag);

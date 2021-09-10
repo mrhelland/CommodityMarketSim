@@ -112,6 +112,7 @@ namespace CommodityMarketSim
             }
         }
 
+        private int last_quantity = 1;
         private void pbCommodity_DragDrop(object sender, DragEventArgs e) {
             string json = (string)e.Data.GetData(DataFormats.Text);
             if(!String.IsNullOrEmpty(json)) {
@@ -122,8 +123,14 @@ namespace CommodityMarketSim
                         matched = c;
                     }
                 }
-                this.Pending = new Transaction(DateTime.Now, this.team, matched, 1, matched.Price);
-                matched.Reserve(1);
+                last_quantity = 1;
+                if(ModifierKeys.HasFlag(Keys.Control)) {
+                    last_quantity = 5;
+                } else if(ModifierKeys.HasFlag(Keys.Shift)) {
+                    last_quantity = 10;
+                }
+                this.Pending = new Transaction(DateTime.Now, this.team, matched, last_quantity, matched.Price);
+                matched.Reserve(last_quantity);
             }
         }
 
@@ -135,10 +142,14 @@ namespace CommodityMarketSim
 
         private void pbCommodity_QueryContinueDrag(object sender, QueryContinueDragEventArgs e) {
             if(e.Action == DragAction.Drop) {
-                this.pending.Commodity.Reserve(-1);
+                this.pending.Commodity.Reserve(-last_quantity);
                 this.Pending = null;
                 UpdateUI();
             }
+        }
+
+        private void pbCommodity_Click(object sender, EventArgs e) {
+
         }
     }
 }
