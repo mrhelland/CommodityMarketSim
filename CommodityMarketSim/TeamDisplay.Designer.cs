@@ -49,7 +49,7 @@
             this.lblFunds.AutoEllipsis = true;
             this.lblFunds.BackColor = System.Drawing.Color.White;
             this.lblFunds.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblFunds.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFunds.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFunds.ForeColor = System.Drawing.Color.Black;
             this.lblFunds.Location = new System.Drawing.Point(70, 38);
             this.lblFunds.Margin = new System.Windows.Forms.Padding(1, 1, 3, 3);
@@ -66,7 +66,7 @@
             this.lblName.AutoEllipsis = true;
             this.lblName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblName.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblName.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblName.ForeColor = System.Drawing.Color.White;
             this.lblName.Location = new System.Drawing.Point(70, 4);
             this.lblName.Margin = new System.Windows.Forms.Padding(1, 3, 3, 1);
@@ -128,7 +128,7 @@
             this.lblQuantity.AutoEllipsis = true;
             this.lblQuantity.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.lblQuantity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblQuantity.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQuantity.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblQuantity.ForeColor = System.Drawing.Color.Gray;
             this.lblQuantity.Location = new System.Drawing.Point(4, 107);
             this.lblQuantity.Margin = new System.Windows.Forms.Padding(1, 1, 3, 3);
@@ -145,7 +145,7 @@
             this.lblPrice.AutoEllipsis = true;
             this.lblPrice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.lblPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblPrice.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrice.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPrice.ForeColor = System.Drawing.Color.Gray;
             this.lblPrice.Location = new System.Drawing.Point(4, 73);
             this.lblPrice.Margin = new System.Windows.Forms.Padding(1, 3, 3, 1);

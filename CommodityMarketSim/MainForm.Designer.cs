@@ -38,7 +38,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNextRound.Font = new System.Drawing.Font("Calibri", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNextRound.Location = new System.Drawing.Point(23, 155);
+            this.btnNextRound.Location = new System.Drawing.Point(23, 87);
             this.btnNextRound.Name = "btnNextRound";
             this.btnNextRound.Size = new System.Drawing.Size(734, 94);
             this.btnNextRound.TabIndex = 0;
@@ -69,11 +69,11 @@
             this.tlpCommodities.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpCommodities.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpCommodities.ForeColor = System.Drawing.Color.White;
-            this.tlpCommodities.Location = new System.Drawing.Point(12, 532);
+            this.tlpCommodities.Location = new System.Drawing.Point(12, 395);
             this.tlpCommodities.Name = "tlpCommodities";
             this.tlpCommodities.RowCount = 1;
             this.tlpCommodities.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpCommodities.Size = new System.Drawing.Size(1560, 317);
+            this.tlpCommodities.Size = new System.Drawing.Size(1560, 454);
             this.tlpCommodities.TabIndex = 4;
             // 
             // tableLayoutPanel1
@@ -95,7 +95,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1560, 404);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1560, 269);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
             // btnFinish
@@ -104,7 +104,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnFinish.Font = new System.Drawing.Font("Calibri", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFinish.Location = new System.Drawing.Point(803, 155);
+            this.btnFinish.Location = new System.Drawing.Point(803, 87);
             this.btnFinish.Name = "btnFinish";
             this.btnFinish.Size = new System.Drawing.Size(734, 94);
             this.btnFinish.TabIndex = 1;
@@ -114,8 +114,7 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1584, 861);
             this.Controls.Add(this.tableLayoutPanel1);

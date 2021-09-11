@@ -35,16 +35,17 @@
             // 
             // lblName
             // 
-            this.lblName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.lblName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblName.AutoEllipsis = true;
             this.lblName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblName.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblName.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblName.ForeColor = System.Drawing.Color.White;
             this.lblName.Location = new System.Drawing.Point(4, 68);
             this.lblName.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(136, 24);
+            this.lblName.Size = new System.Drawing.Size(136, 28);
             this.lblName.TabIndex = 0;
             this.lblName.Text = "Commodity Name";
             this.lblName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -55,7 +56,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblQuantity.AutoEllipsis = true;
             this.lblQuantity.BackColor = System.Drawing.Color.White;
-            this.lblQuantity.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQuantity.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblQuantity.ForeColor = System.Drawing.Color.Black;
             this.lblQuantity.Location = new System.Drawing.Point(69, 2);
             this.lblQuantity.Margin = new System.Windows.Forms.Padding(1, 1, 3, 1);
@@ -72,7 +73,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPrice.AutoEllipsis = true;
             this.lblPrice.BackColor = System.Drawing.Color.White;
-            this.lblPrice.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrice.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPrice.ForeColor = System.Drawing.Color.Black;
             this.lblPrice.Location = new System.Drawing.Point(69, 34);
             this.lblPrice.Margin = new System.Windows.Forms.Padding(1, 1, 3, 1);
@@ -125,7 +126,7 @@
             this.Controls.Add(this.lblName);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "CommodityDisplay";
-            this.Size = new System.Drawing.Size(143, 97);
+            this.Size = new System.Drawing.Size(143, 101);
             this.Load += new System.EventHandler(this.CommodityDisplay_Load);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.CommodityDisplay_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.CommodityDisplay_DragEnter);

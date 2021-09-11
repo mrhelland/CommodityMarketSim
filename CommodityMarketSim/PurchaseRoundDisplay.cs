@@ -53,6 +53,7 @@ namespace CommodityMarketSim
             foreach(Team t in Market.TeamList) {
                 TeamDisplay temp = new TeamDisplay();
                 temp.Team = t;
+                temp.Width = 200;
                 temp.Pending = null;
                 temp.PendingTransactionChanged += OnPendingTransactionChanged;
                 flpTeams.Controls.Add(temp);
@@ -63,6 +64,7 @@ namespace CommodityMarketSim
         private void LoadCommodities() {
             foreach(Commodity c in Market.CommodityList) {
                 CommodityDisplay temp = new CommodityDisplay();
+                temp.Width = 200;
                 temp.Commodity = c;
                 flpCommodities.Controls.Add(temp);
             }
