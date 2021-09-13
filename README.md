@@ -1,5 +1,8 @@
 # CommodityMarketSim
 
+The purpose of this simulator is to demonstrate the effects of supply and demand on prices and its impact on decision-making. Teams will create a Bill of Materials needed to complete a task. Each team purchases 1 unit each round. At the end of each round, prices will adjust to reflect demand and relative supply.
+![Screenshot](https://i.imgur.com/0Rgwo9d.png)
+
 Current status of this project:
 - Stable
 - Windows Forms
