@@ -7,7 +7,7 @@ Current status of this project:
 - Stable
 - Windows Forms
 - .NET 4.72
-- Database not implemented (teams and commodities are currently hardcoded arrays)
+- Database not yet implemented (commodities are hardcoded, team quantity is configurable)
 - Generates HTML purchasing reports (using a template) at market close
 
 The scope of this project was significantly retracted since: 
