@@ -75,9 +75,9 @@ namespace CommodityMarketSim
             } else {
                 this.lblName.Text = team.Name;
                 if(pending != null) {
-                    this.lblFunds.Text = (team.Funds-pending.Totalprice).ToString() + " bc";
+                    this.lblFunds.Text = Market.MonetarySymbol + (team.Funds-pending.Totalprice).ToString();
                 } else {
-                    this.lblFunds.Text = team.Funds.ToString() + " bc";
+                    this.lblFunds.Text = Market.MonetarySymbol + team.Funds.ToString();
                 }
                 this.pbIcon.Image = imgsTeams.Images[team.ImageIndex];
                 this.BackColor = Globals.GetFormBackcolor(team.Funds > 200);
@@ -90,11 +90,11 @@ namespace CommodityMarketSim
                 pbCommodity.Visible = false;
             }
             if(pending == null) {
-                this.lblPrice.Text = "0 bc";
+                this.lblPrice.Text = Market.MonetarySymbol + "0";
                 this.lblQuantity.Text = "0 units";
                 this.pbCommodity.Image = Properties.Resources.target;
             } else {
-                this.lblPrice.Text = pending.Unitprice.ToString() + " bc";
+                this.lblPrice.Text = Market.MonetarySymbol + pending.Unitprice.ToString();
                 this.lblQuantity.Text = pending.Quantity.ToString() + " units";
                 this.pbCommodity.Image = imgsCommodities.Images[pending.Commodity.ImageIndex];
             }

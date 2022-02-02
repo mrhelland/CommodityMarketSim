@@ -69,5 +69,14 @@
     &lt;td&gt;%TOTALPRICE%&lt;/td&gt;
 &lt;/tr&gt;</Value>
     </Setting>
+    <Setting Name="MonetarySymbol" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ↂ</Value>
+    </Setting>
+    <Setting Name="TeamQuantity" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="TeamBudget" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">25000</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -6,6 +6,23 @@ namespace MarketFrameworkLibrary
 {
     public class Market
     {
+        public static string MonetarySymbol {
+            get {
+                return Properties.Settings.Default.MonetarySymbol;
+            } set {
+                Properties.Settings.Default.MonetarySymbol = value;
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        public static int TeamQuantity {
+            get {
+                return Properties.Settings.Default.TeamQuantity;
+            } set {
+                Properties.Settings.Default.TeamQuantity = value;
+                Properties.Settings.Default.Save();
+            }
+        }
 
         public static Commodity[] CommodityList = {
             new Commodity(25, "Rubber Bands", 200, Commodity.Commodities.rubberband),
@@ -24,14 +41,7 @@ namespace MarketFrameworkLibrary
             new Commodity(10000, "Nothing", 0, Commodity.Commodities.none)
         };
 
-        public static Team[] TeamList = {
-            new Team(1, "Team 1", 25000),
-            new Team(2, "Team 2", 25000),
-            new Team(3, "Team 3", 25000),
-            new Team(4, "Team 4", 25000),
-            new Team(5, "Team 5", 25000),
-            new Team(6, "Team 6", 25000)
-        };
+        public static Team[] TeamList; 
 
         private List<PurchaseRound> rounds;
         public List<PurchaseRound> Rounds {
@@ -40,6 +50,11 @@ namespace MarketFrameworkLibrary
         }
 
         public Market() {
+            List<Team> teams = new List<Team>();
+            for(int i = 1; i <= Properties.Settings.Default.TeamQuantity; i++) {
+                teams.Add(new Team(i, "Team " + i.ToString(), Properties.Settings.Default.TeamBudget));
+            }
+            TeamList = teams.ToArray();
             rounds = new List<PurchaseRound>();
         }
 

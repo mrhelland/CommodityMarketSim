@@ -66,6 +66,12 @@
     <Compile Include="CommodityDisplay.Designer.cs">
       <DependentUpon>CommodityDisplay.cs</DependentUpon>
     </Compile>
+    <Compile Include="MarketSetup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MarketSetup.Designer.cs">
+      <DependentUpon>MarketSetup.cs</DependentUpon>
+    </Compile>
     <Compile Include="PurchaseRoundForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +101,9 @@
     </Compile>
     <EmbeddedResource Include="CommodityDisplay.resx">
       <DependentUpon>CommodityDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MarketSetup.resx">
+      <DependentUpon>MarketSetup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PurchaseRoundForm.resx">
       <DependentUpon>PurchaseRoundForm.cs</DependentUpon>

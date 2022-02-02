@@ -73,7 +73,7 @@ namespace MarketFrameworkLibrary
             output = output.Replace("%TIME%", this.timestamp.ToShortTimeString());
             output = output.Replace("%COMMODITY%", this.commodity.Name);
             output = output.Replace("%QUANTITY%", this.quantity.ToString() + " unit(s)");
-            output = output.Replace("%PRICE%", this.unitprice.ToString() + " bc");
+            output = output.Replace("%PRICE%", Properties.Settings.Default.MonetarySymbol + this.unitprice.ToString());
             if(this.success) {
                 output = output.Replace("%SUCCESS%", "OK");
             } else {

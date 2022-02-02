@@ -38,7 +38,7 @@ namespace CommodityMarketSim {
 
         private void UpdateUI() {
             this.lblName.Text = commodity.Name;
-            this.lblPrice.Text = commodity.Price.ToString() + " bc";
+            this.lblPrice.Text = "ↂ" + commodity.Price.ToString();
             this.lblQuantity.Text = (commodity.Available - commodity.Pendingunits).ToString() + " units";
             this.pbIcon.Image = imgsCommodities.Images[commodity.ImageIndex];
             this.BackColor = Globals.GetFormBackcolor(commodity.Available > 0);

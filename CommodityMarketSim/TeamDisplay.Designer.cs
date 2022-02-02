@@ -1,4 +1,5 @@
-﻿namespace CommodityMarketSim
+﻿using MarketFrameworkLibrary;
+namespace CommodityMarketSim
 {
     partial class TeamDisplay
     {
@@ -152,7 +153,7 @@
             this.lblPrice.Name = "lblPrice";
             this.lblPrice.Size = new System.Drawing.Size(93, 30);
             this.lblPrice.TabIndex = 8;
-            this.lblPrice.Text = "0 bc";
+            this.lblPrice.Text = Market.MonetarySymbol + "0";
             this.lblPrice.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // imgsCommodities

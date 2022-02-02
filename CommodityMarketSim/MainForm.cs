@@ -18,11 +18,14 @@ namespace CommodityMarketSim {
 
         public MainForm() {
             InitializeComponent();
-            market = new Market();
+
         }
 
         private void MainForm_Load(object sender, EventArgs e) {
             currentround = 1;
+            MarketSetup ms = new MarketSetup();
+            ms.ShowDialog();
+            market = new Market();
             LoadTeams();
             LoadCommodities();
         }
