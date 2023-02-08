@@ -12,7 +12,6 @@ namespace MarketFrameworkLibrary
     {
         [DataMember(Name = "Timestamp")]
         private DateTime timestamp;
-        [DataMember(Name = "Team")]
         private Team team;
         [DataMember(Name = "Commodity")]
         private Commodity commodity;

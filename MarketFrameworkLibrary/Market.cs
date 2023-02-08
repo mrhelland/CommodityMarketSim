@@ -72,11 +72,6 @@ namespace MarketFrameworkLibrary
         }
 
         public Market() {
-            List<Team> teams = new List<Team>();
-            for(int i = 1; i <= this.teamCount; i++) {
-                teams.Add(new Team(i, "Team " + i.ToString(), this.teamBudget));
-            }
-            TeamList = teams.ToArray();
             rounds = new List<PurchaseRound>();
             this.commodities = DefaultCommodityList;
             Market.instance = this;        
@@ -95,7 +90,10 @@ namespace MarketFrameworkLibrary
         public Exception Save(string filename) {
             try {
                 DataContractSerializer serializer = new DataContractSerializer(typeof(Market));
-                using(XmlWriter xw = XmlWriter.Create(filename)) {
+                XmlWriterSettings settings = new XmlWriterSettings();
+                settings.Indent = true;
+                settings.OmitXmlDeclaration = true;
+                using(XmlWriter xw = XmlWriter.Create(filename, settings)) {
                     serializer.WriteObject(xw, this);
                 }
             } catch (Exception ex) {
@@ -108,6 +106,8 @@ namespace MarketFrameworkLibrary
             try {
                 DataContractSerializer deserializer = new DataContractSerializer(typeof(Market));
                 FileStream fs = new FileStream(filename, FileMode.Open);
+                XmlDictionaryReaderQuotas quotas = new XmlDictionaryReaderQuotas();
+                quotas.MaxDepth = 100;
                 XmlDictionaryReader reader = XmlDictionaryReader.CreateTextReader(fs, new XmlDictionaryReaderQuotas());
                 Market m = (Market)deserializer.ReadObject(reader);
                 reader.Close();

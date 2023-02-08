@@ -29,6 +29,11 @@ namespace CommodityMarketSim {
             Properties.Settings.Default.TeamBudget = (int)this.numTeamBudget.Value;
             Properties.Settings.Default.Save();
             Market newInstance = new Market(Properties.Settings.Default.TeamQuantity, Properties.Settings.Default.TeamBudget, Properties.Settings.Default.MonetarySymbol);
+            List<Team> teams = new List<Team>();
+            for(int i = 0; i < Properties.Settings.Default.TeamQuantity; i++) {
+                teams.Add(new Team(i + 1, "Team " + (i + 1).ToString(), Properties.Settings.Default.TeamBudget));
+            }
+            newInstance.TeamList = teams.ToArray();
             this.Close();
         }
 
