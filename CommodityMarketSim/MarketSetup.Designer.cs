@@ -30,7 +30,11 @@ namespace CommodityMarketSim {
             this.txtMonetarySymbol = new System.Windows.Forms.TextBox();
             this.btnStart = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
+            this.btnLoad = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.numTeamBudget = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.numTeamQuantity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numTeamBudget)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -63,7 +67,7 @@ namespace CommodityMarketSim {
             this.numTeamQuantity.TabIndex = 1;
             this.numTeamQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numTeamQuantity.Value = new decimal(new int[] {
-            2,
+            5,
             0,
             0,
             0});
@@ -97,14 +101,14 @@ namespace CommodityMarketSim {
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(120, 40);
             this.btnStart.TabIndex = 4;
-            this.btnStart.Text = "Start";
+            this.btnStart.Text = "Create...";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
             // btnExit
             // 
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.Location = new System.Drawing.Point(161, 128);
+            this.btnExit.Location = new System.Drawing.Point(307, 128);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(120, 40);
             this.btnExit.TabIndex = 5;
@@ -112,12 +116,67 @@ namespace CommodityMarketSim {
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // btnLoad
+            // 
+            this.btnLoad.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLoad.Location = new System.Drawing.Point(161, 128);
+            this.btnLoad.Name = "btnLoad";
+            this.btnLoad.Size = new System.Drawing.Size(120, 40);
+            this.btnLoad.TabIndex = 6;
+            this.btnLoad.Text = "Load...";
+            this.btnLoad.UseVisualStyleBackColor = true;
+            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(303, 22);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(109, 20);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Team Budget:";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // numTeamBudget
+            // 
+            this.numTeamBudget.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numTeamBudget.Increment = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numTeamBudget.Location = new System.Drawing.Point(307, 46);
+            this.numTeamBudget.Maximum = new decimal(new int[] {
+            500000,
+            0,
+            0,
+            0});
+            this.numTeamBudget.Minimum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numTeamBudget.Name = "numTeamBudget";
+            this.numTeamBudget.Size = new System.Drawing.Size(120, 26);
+            this.numTeamBudget.TabIndex = 8;
+            this.numTeamBudget.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numTeamBudget.Value = new decimal(new int[] {
+            200000,
+            0,
+            0,
+            0});
+            // 
             // MarketSetup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(304, 257);
+            this.ClientSize = new System.Drawing.Size(445, 257);
+            this.Controls.Add(this.numTeamBudget);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.txtMonetarySymbol);
@@ -126,9 +185,11 @@ namespace CommodityMarketSim {
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "MarketSetup";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Market Setup";
             this.Load += new System.EventHandler(this.MarketSetup_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numTeamQuantity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numTeamBudget)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -142,5 +203,8 @@ namespace CommodityMarketSim {
         private System.Windows.Forms.TextBox txtMonetarySymbol;
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Button btnLoad;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.NumericUpDown numTeamBudget;
     }
 }

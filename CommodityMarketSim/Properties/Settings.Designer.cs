@@ -22,5 +22,53 @@ namespace CommodityMarketSim.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public int TeamQuantity {
+            get {
+                return ((int)(this["TeamQuantity"]));
+            }
+            set {
+                this["TeamQuantity"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("200000")]
+        public int TeamBudget {
+            get {
+                return ((int)(this["TeamBudget"]));
+            }
+            set {
+                this["TeamBudget"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ↂ")]
+        public string MonetarySymbol {
+            get {
+                return ((string)(this["MonetarySymbol"]));
+            }
+            set {
+                this["MonetarySymbol"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastSavePath {
+            get {
+                return ((string)(this["LastSavePath"]));
+            }
+            set {
+                this["LastSavePath"] = value;
+            }
+        }
     }
 }

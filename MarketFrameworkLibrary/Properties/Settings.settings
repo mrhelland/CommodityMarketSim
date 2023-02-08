@@ -69,14 +69,45 @@
     &lt;td&gt;%TOTALPRICE%&lt;/td&gt;
 &lt;/tr&gt;</Value>
     </Setting>
-    <Setting Name="MonetarySymbol" Type="System.String" Scope="User">
-      <Value Profile="(Default)">ↂ</Value>
-    </Setting>
-    <Setting Name="TeamQuantity" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">5</Value>
-    </Setting>
-    <Setting Name="TeamBudget" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">25000</Value>
+    <Setting Name="HTMLClosingPricePageTemplate" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;&lt;/title&gt;
+        &lt;style&gt;
+            BODY {
+                font-family: Arial;
+                font-size: 14px;
+                color: black;
+            }
+            
+            table {
+                border: 2px solid black;
+                border-collapse: collapse;
+                width: 400px;
+            }
+            
+            td, th {
+                border: 1px solid gray;
+                padding: 5px;
+            }
+            .odd {
+                background-color: #EEEEEE;
+            }
+            .even {
+                background-color: #FFFFFF;
+            }
+        
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;H1&gt;Closing Prices Summary&lt;/H1&gt;
+        &lt;table&gt;
+            %COMMODITIES%
+        &lt;/table&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -5,27 +5,36 @@ using System.Runtime.Serialization;
 
 namespace MarketFrameworkLibrary
 {
+    [DataContract]
     public class Team : IComparable<Team>
     {
         public event EventHandler ValueChanged;
 
-        private string name;
-        private float funds;
-        private int number;
+        [DataMember(Name = "Name")]
+        internal string name;
+        [DataMember(Name = "Funds")]
+        internal float funds;
+        [DataMember(Name = "Number")]
+        internal int number;
+        [DataMember(Name = "Transactions")]
         List<Transaction> processedtransactions;
 
+        
         public string Name {
             get => name;
             set => name = value;
         }
+
         public float Funds {
             get => funds;
             set => funds = value;
         }
+
         public List<Transaction> Transactions {
             get => processedtransactions;
             set => processedtransactions = value;
         }
+
         public int Number {
             get => number;
             set => number = value;
@@ -35,12 +44,15 @@ namespace MarketFrameworkLibrary
             get => number - 1;
         }
 
-        public Team(int number, string name, float funds) {
+        internal Team() {
+            processedtransactions = new List<Transaction>();
+            OnValueChanged();
+        }
+
+        public Team(int number, string name, float funds) : this() {
             this.name = name;
             this.funds = funds;
             this.number = number;
-            processedtransactions = new List<Transaction>();
-            OnValueChanged();
         }
 
         public bool HasFunds(float amount) {

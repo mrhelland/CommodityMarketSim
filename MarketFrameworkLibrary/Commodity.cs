@@ -1,10 +1,11 @@
 ﻿using System;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace MarketFrameworkLibrary
 {
-
+    [DataContract]
     public class Commodity : IComparable<Commodity>, IEqualityComparer<Commodity>, IEquatable<Commodity>
     {
 
@@ -27,9 +28,13 @@ namespace MarketFrameworkLibrary
 
         public event EventHandler ValueChanged;
 
+        [DataMember(Name = "Available")]
         private int available;
+        [DataMember(Name = "Name")]
         private string name;
+        [DataMember(Name = "Price")]
         private float price;
+        [DataMember(Name = "Type")]
         private Commodity.Commodities type;
 
         private int pendingunits;
@@ -54,13 +59,16 @@ namespace MarketFrameworkLibrary
             get => (int)type;
         }
 
-        public Commodity(int available, string name, float price, Commodity.Commodities type) {
+        internal Commodity() {
+            this.pendingunits = 0;
+            OnValueChanged();
+        }
+
+        public Commodity(int available, string name, float price, Commodity.Commodities type) : this() {
             this.available = available;
             this.name = name;
             this.price = price;
             this.type = type;
-            this.pendingunits = 0;
-            OnValueChanged();
         }
 
         public bool HasStock(int quantity) {

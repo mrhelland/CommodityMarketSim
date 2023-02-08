@@ -13,7 +13,6 @@ using System.IO;
 namespace CommodityMarketSim {
     public partial class MainForm : Form {
 
-        private Market market;
         private int currentround;
 
         public MainForm() {
@@ -25,7 +24,6 @@ namespace CommodityMarketSim {
             currentround = 1;
             MarketSetup ms = new MarketSetup();
             ms.ShowDialog();
-            market = new Market();
             LoadTeams();
             LoadCommodities();
         }
@@ -33,6 +31,7 @@ namespace CommodityMarketSim {
         private void btnNextRound_Click(object sender, EventArgs e) {
             PurchaseRound temp = new PurchaseRound(currentround);
             PurchaseRoundForm form = new PurchaseRoundForm();
+           
             form.Round = temp;
             form.ShowDialog();
             currentround += 1;
@@ -40,13 +39,13 @@ namespace CommodityMarketSim {
 
         private void LoadTeams() {
             tlpTeams.ColumnStyles.Clear();
-            tlpTeams.ColumnCount = Market.TeamList.Length;
+            tlpTeams.ColumnCount = Market.Instance.TeamList.Length;
             tlpTeams.RowCount = 1;
             tlpTeams.RowStyles.Clear();
             tlpTeams.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
             int column = 0 ;
-            foreach(Team t in Market.TeamList) {
-                tlpTeams.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100 / Market.TeamList.Length));
+            foreach(Team t in Market.Instance.TeamList) {
+                tlpTeams.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100 / Market.Instance.TeamList.Length));
                 TeamDisplay temp = new TeamDisplay();
                 temp.Team = t;
                 temp.ShowDropBox = false;
@@ -59,7 +58,7 @@ namespace CommodityMarketSim {
 
         private void LoadCommodities() {
             tlpCommodities.ColumnStyles.Clear();
-            tlpCommodities.ColumnCount = (int)Math.Ceiling(Market.CommodityList.Length / 3.0);
+            tlpCommodities.ColumnCount = (int)Math.Ceiling(Market.Instance.Commodities.Length / 3.0);
             tlpCommodities.RowCount = 3;
             tlpCommodities.RowStyles.Clear();
             tlpCommodities.RowStyles.Add(new RowStyle(SizeType.Percent, 33.33f));
@@ -71,7 +70,7 @@ namespace CommodityMarketSim {
             }
             int column = 0;
             int row = 0;
-            foreach(Commodity c in Market.CommodityList) {
+            foreach(Commodity c in Market.Instance.Commodities) {
                 CommodityDisplay temp = new CommodityDisplay();
                 temp.Commodity = c;
                 temp.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom | AnchorStyles.Top;
@@ -90,7 +89,7 @@ namespace CommodityMarketSim {
             fbd.RootFolder = Environment.SpecialFolder.MyComputer;
             DialogResult result = fbd.ShowDialog();
             if(result == DialogResult.OK || result == DialogResult.Yes) {
-                foreach(Team t in Market.TeamList) {
+                foreach(Team t in Market.Instance.TeamList) {
                     StreamWriter sw = new StreamWriter(Path.Combine(fbd.SelectedPath, t.Name + ".html"));
                     sw.Write(t.GetHTML());
                     sw.Close();
@@ -100,5 +99,22 @@ namespace CommodityMarketSim {
             }
            
         }
+
+        private void btnSave_Click(object sender, EventArgs e) {
+            SaveFileDialog sfd = new SaveFileDialog();
+            if(String.IsNullOrEmpty(Properties.Settings.Default.LastSavePath)) {
+                sfd.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            } else {
+                sfd.InitialDirectory = Properties.Settings.Default.LastSavePath;
+            }
+            sfd.DefaultExt = "xml";
+            sfd.Filter = "xml files (*.xml)|*.xml|All files (*.*)|*.*";
+            if(sfd.ShowDialog() == DialogResult.OK) {
+                Market.Instance.Save(sfd.FileName);
+                Properties.Settings.Default.LastSavePath = sfd.FileName;
+            }
+        }
+
+        
     }
 }

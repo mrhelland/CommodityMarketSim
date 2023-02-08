@@ -50,7 +50,7 @@ namespace CommodityMarketSim
         }
 
         private void LoadTeams() {
-            foreach(Team t in Market.TeamList) {
+            foreach(Team t in Market.Instance.TeamList) {
                 TeamDisplay temp = new TeamDisplay();
                 temp.Team = t;
                 temp.Width = 200;
@@ -62,7 +62,7 @@ namespace CommodityMarketSim
         }
 
         private void LoadCommodities() {
-            foreach(Commodity c in Market.CommodityList) {
+            foreach(Commodity c in Market.Instance.Commodities) {
                 CommodityDisplay temp = new CommodityDisplay();
                 temp.Width = 200;
                 temp.Commodity = c;

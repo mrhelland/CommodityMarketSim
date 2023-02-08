@@ -1,17 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
 
+
 namespace MarketFrameworkLibrary
 {
+    [DataContract]
     public class Transaction
     {
+        [DataMember(Name = "Timestamp")]
         private DateTime timestamp;
+        [DataMember(Name = "Team")]
         private Team team;
+        [DataMember(Name = "Commodity")]
         private Commodity commodity;
+        [DataMember(Name = "Quantity")]
         private int quantity;
+        [DataMember(Name = "UnitPrice")]
         private float unitprice;
+        [DataMember(Name = "Success")]
         private bool success;
 
         public DateTime Timestamp {
@@ -36,13 +45,16 @@ namespace MarketFrameworkLibrary
             get => success;
         }
 
-        public Transaction(DateTime t, Team a, Commodity c, int qty, float price) {
+        internal Transaction() {
+            success = false;
+        }
+
+        public Transaction(DateTime t, Team a, Commodity c, int qty, float price) : this() {
             timestamp = t;
             team = a;
             commodity = c;
             quantity = qty;
             unitprice = price;
-            success = false;
         }
 
         public bool IsPossible() {
@@ -73,7 +85,7 @@ namespace MarketFrameworkLibrary
             output = output.Replace("%TIME%", this.timestamp.ToShortTimeString());
             output = output.Replace("%COMMODITY%", this.commodity.Name);
             output = output.Replace("%QUANTITY%", this.quantity.ToString() + " unit(s)");
-            output = output.Replace("%PRICE%", Properties.Settings.Default.MonetarySymbol + this.unitprice.ToString());
+            output = output.Replace("%PRICE%", Market.Instance.MonetarySymbol + this.unitprice.ToString());
             if(this.success) {
                 output = output.Replace("%SUCCESS%", "OK");
             } else {

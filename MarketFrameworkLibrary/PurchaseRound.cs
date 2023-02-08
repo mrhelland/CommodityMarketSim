@@ -1,25 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace MarketFrameworkLibrary
 {
+    [DataContract]
     public class PurchaseRound
     {
+        [DataMember(Name = "Number")]
         private int number;
         public int Number {
             get => number;
         }
 
+        [DataMember(Name = "Transactions")]
         private List<Transaction> transactions;
         public List<Transaction> Transactions {
             get => transactions;
             set => transactions = value;
         }
 
-        public PurchaseRound(int number) {
-            this.number = number;
+        internal PurchaseRound() {
             transactions = new List<Transaction>();
+        }
+
+        public PurchaseRound(int number) : this() {
+            this.number = number;
         }
 
         public void ProcessTransactions() {
@@ -32,7 +39,7 @@ namespace MarketFrameworkLibrary
         }
 
         private void AdjustMarket(List<Transaction> processed) {
-            foreach(Commodity c in Market.CommodityList) {
+            foreach(Commodity c in Market.Instance.Commodities) {
                 c.AdjustPrice(Utility.RandomNumber(0.94f, 0.98f));
             }
             foreach(Transaction t in processed) {

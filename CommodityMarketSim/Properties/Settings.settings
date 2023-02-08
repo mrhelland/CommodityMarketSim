@@ -1,5 +1,18 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CommodityMarketSim.Properties" GeneratedClassName="Settings">
   <Profiles />
-  <Settings />
+  <Settings>
+    <Setting Name="TeamQuantity" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="TeamBudget" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">200000</Value>
+    </Setting>
+    <Setting Name="MonetarySymbol" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ↂ</Value>
+    </Setting>
+    <Setting Name="LastSavePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
 </SettingsFile>

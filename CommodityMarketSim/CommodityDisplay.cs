@@ -80,7 +80,7 @@ namespace CommodityMarketSim {
             Commodity matched = null;
             if(!String.IsNullOrEmpty(json)) {
                 Commodity fromJSON = Commodity.GetCommodity(json);
-                foreach(Commodity c in Market.CommodityList) {
+                foreach(Commodity c in Market.Instance.Commodities) {
                     if(String.Compare(c.Name, fromJSON.Name) == 0) {
                         matched = c;
                         break;

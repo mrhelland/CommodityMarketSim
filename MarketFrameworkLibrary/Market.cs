@@ -1,49 +1,71 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization;
 using System.Text;
+using System.Xml;
 
 namespace MarketFrameworkLibrary
 {
+    [DataContract]
     public class Market
     {
-        public static string MonetarySymbol {
-            get {
-                return Properties.Settings.Default.MonetarySymbol;
-            } set {
-                Properties.Settings.Default.MonetarySymbol = value;
-                Properties.Settings.Default.Save();
-            }
+        private static Market instance; 
+        public static Market Instance {
+            get => instance;
         }
 
-        public static int TeamQuantity {
-            get {
-                return Properties.Settings.Default.TeamQuantity;
-            } set {
-                Properties.Settings.Default.TeamQuantity = value;
-                Properties.Settings.Default.Save();
-            }
+        [DataMember(Name="TeamList")]
+        internal Team[] teamList;
+        public Team[] TeamList {
+            get => teamList;
+            set => teamList = value;
         }
 
-        public static Commodity[] CommodityList = {
-            new Commodity(25, "Rubber Bands", 200, Commodity.Commodities.rubberband),
-            new Commodity(100, "Notecards", 200, Commodity.Commodities.notecard),
-            new Commodity(25, "Small Paper Clips", 200, Commodity.Commodities.sm_clip),
-            new Commodity(25, "Large Paper Clips", 300, Commodity.Commodities.lg_clip),
-            new Commodity(500, "Copy Paper", 300, Commodity.Commodities.paper),
-            new Commodity(100, "Popsicle Sticks", 300, Commodity.Commodities.sticks),
-            new Commodity(50, "Masking Tape", 1000, Commodity.Commodities.tape),
-            new Commodity(50, "String", 1000, Commodity.Commodities.@string),
-            new Commodity(5, "Colored Pencils", 300, Commodity.Commodities.pencilset),
-            new Commodity(20, "Round Stic Pen", 300, Commodity.Commodities.pen),
-            new Commodity(20, "No.2 Pencil", 300, Commodity.Commodities.pencil),
-            new Commodity(10, "12\" Ruler", 500, Commodity.Commodities.ruler),
-            new Commodity(10, "Scissors", 500, Commodity.Commodities.scissors),
+        [DataMember(Name="TeamCount")]
+        internal int teamCount;
+        public int TeamCount {
+            get => teamCount;
+        }
+
+        [DataMember(Name="TeamBudget")]
+        internal int teamBudget;
+        public int TeamBudget {
+            get => teamBudget;
+        }
+
+        [DataMember(Name="MonetarySymbol")]
+        internal string monetarySymbol;
+        public string MonetarySymbol {
+            get => monetarySymbol;
+        }
+
+        [DataMember(Name ="Commodities")]
+        internal Commodity[] commodities;
+        public Commodity[] Commodities {
+            get => this.commodities;
+        }
+
+        [DataMember()]
+        public static Commodity[] DefaultCommodityList = {
+            new Commodity(20, "Rubber Bands", 2000, Commodity.Commodities.rubberband),
+            new Commodity(100, "Notecards", 3000, Commodity.Commodities.notecard),
+            new Commodity(25, "Small Paper Clips", 2000, Commodity.Commodities.sm_clip),
+            new Commodity(25, "Large Paper Clips", 3000, Commodity.Commodities.lg_clip),
+            new Commodity(200, "Copy Paper", 5000, Commodity.Commodities.paper),
+            new Commodity(100, "Popsicle Sticks", 3000, Commodity.Commodities.sticks),
+            new Commodity(40, "Masking Tape", 15000, Commodity.Commodities.tape),
+            new Commodity(40, "String", 15000, Commodity.Commodities.@string),
+            new Commodity(4, "Colored Pencils", 5000, Commodity.Commodities.pencilset),
+            new Commodity(6, "Round Stic Pen", 3000, Commodity.Commodities.pen),
+            new Commodity(6, "No.2 Pencil", 3000, Commodity.Commodities.pencil),
+            new Commodity(4, "12\" Ruler", 5000, Commodity.Commodities.ruler),
+            new Commodity(4, "Scissors", 5000, Commodity.Commodities.scissors),
             new Commodity(10000, "Nothing", 0, Commodity.Commodities.none)
         };
 
-        public static Team[] TeamList; 
-
-        private List<PurchaseRound> rounds;
+        [DataMember(Name = "Rounds")]
+        internal List<PurchaseRound> rounds;
         public List<PurchaseRound> Rounds {
             get => rounds;
             set => rounds = value;
@@ -51,11 +73,52 @@ namespace MarketFrameworkLibrary
 
         public Market() {
             List<Team> teams = new List<Team>();
-            for(int i = 1; i <= Properties.Settings.Default.TeamQuantity; i++) {
-                teams.Add(new Team(i, "Team " + i.ToString(), Properties.Settings.Default.TeamBudget));
+            for(int i = 1; i <= this.teamCount; i++) {
+                teams.Add(new Team(i, "Team " + i.ToString(), this.teamBudget));
             }
             TeamList = teams.ToArray();
             rounds = new List<PurchaseRound>();
+            this.commodities = DefaultCommodityList;
+            Market.instance = this;        
+        }
+
+        public Market(int teamCount, int teamBudget, String monetarySymbol) : this() {
+            this.teamCount = teamCount;
+            this.teamBudget = teamBudget;
+            this.monetarySymbol = monetarySymbol;
+        }
+
+        public Market(int teamCount, int teamBudget, String monetarySymbol, Commodity[] commodities) : this(teamCount, teamBudget, monetarySymbol) {
+            this.commodities = commodities;
+        }
+
+        public Exception Save(string filename) {
+            try {
+                DataContractSerializer serializer = new DataContractSerializer(typeof(Market));
+                using(XmlWriter xw = XmlWriter.Create(filename)) {
+                    serializer.WriteObject(xw, this);
+                }
+            } catch (Exception ex) {
+                return ex;
+            }
+            return null;
+        }
+
+        public static Market Load(string filename) {
+            try {
+                DataContractSerializer deserializer = new DataContractSerializer(typeof(Market));
+                FileStream fs = new FileStream(filename, FileMode.Open);
+                XmlDictionaryReader reader = XmlDictionaryReader.CreateTextReader(fs, new XmlDictionaryReaderQuotas());
+                Market m = (Market)deserializer.ReadObject(reader);
+                reader.Close();
+                fs.Close();
+                return m;
+            } catch (Exception ex) {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+                return null;
+            }
+
         }
 
     }

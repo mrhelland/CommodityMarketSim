@@ -103,39 +103,49 @@ namespace MarketFrameworkLibrary.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("ↂ")]
-        public string MonetarySymbol {
-            get {
-                return ((string)(this["MonetarySymbol"]));
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <style>
+            BODY {
+                font-family: Arial;
+                font-size: 14px;
+                color: black;
             }
-            set {
-                this["MonetarySymbol"] = value;
+            
+            table {
+                border: 2px solid black;
+                border-collapse: collapse;
+                width: 400px;
             }
-        }
+            
+            td, th {
+                border: 1px solid gray;
+                padding: 5px;
+            }
+            .odd {
+                background-color: #EEEEEE;
+            }
+            .even {
+                background-color: #FFFFFF;
+            }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("5")]
-        public int TeamQuantity {
+        </style>
+    </head>
+    <body>
+        <H1>Closing Prices Summary</H1>
+        <table>
+            %COMMODITIES%
+        </table>
+    </body>
+</html>
+")]
+        public string HTMLClosingPricePageTemplate {
             get {
-                return ((int)(this["TeamQuantity"]));
-            }
-            set {
-                this["TeamQuantity"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("25000")]
-        public int TeamBudget {
-            get {
-                return ((int)(this["TeamBudget"]));
-            }
-            set {
-                this["TeamBudget"] = value;
+                return ((string)(this["HTMLClosingPricePageTemplate"]));
             }
         }
     }
