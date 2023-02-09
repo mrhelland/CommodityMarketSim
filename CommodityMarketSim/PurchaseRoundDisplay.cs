@@ -50,6 +50,11 @@ namespace CommodityMarketSim
         }
 
         private void LoadTeams() {
+            if(Market.TeamList == null) {
+                return;
+            }
+
+            int index = 0;
             foreach(Team t in Market.TeamList) {
                 TeamDisplay temp = new TeamDisplay();
                 temp.Team = t;
@@ -90,6 +95,24 @@ namespace CommodityMarketSim
                 round.ProcessTransactions();
             }
             this.ParentForm.Close();
+        }
+
+        public void FillBlanks() {
+            Commodity nothing = null;
+            foreach(Commodity c in Market.CommodityList) {
+                if(c.CommmodityType == Commodity.Commodities.none) {
+                    nothing = c;
+                }
+            }
+            foreach(TeamDisplay td in flpTeams.Controls) {
+                if(td.Pending == null) {
+                    td.Pending = new Transaction(DateTime.Now, td.Team, nothing, 1, 0);
+                }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e) {
+            FillBlanks();
         }
     }
 }

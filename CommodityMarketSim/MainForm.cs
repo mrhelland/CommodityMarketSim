@@ -40,20 +40,29 @@ namespace CommodityMarketSim {
 
         private void LoadTeams() {
             tlpTeams.ColumnStyles.Clear();
-            tlpTeams.ColumnCount = Market.TeamList.Length;
-            tlpTeams.RowCount = 1;
+            tlpTeams.ColumnCount = Math.Min(5, Market.TeamList.Length);
+            if(Market.TeamQuantity > 5) {
+                tlpTeams.RowCount = 2;
+            } else {
+                tlpTeams.RowCount = 1;          
+            }
             tlpTeams.RowStyles.Clear();
             tlpTeams.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
             int column = 0 ;
+            int row = 0;
             foreach(Team t in Market.TeamList) {
                 tlpTeams.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100 / Market.TeamList.Length));
                 TeamDisplay temp = new TeamDisplay();
                 temp.Team = t;
                 temp.ShowDropBox = false;
                 temp.Pending = null;
-                temp.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom | AnchorStyles.Top;
-                tlpTeams.Controls.Add(temp, column, 1);
+                temp.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
+                tlpTeams.Controls.Add(temp, column, row);
                 column++;
+                if(column > 4) {
+                    column = 0;
+                    row++;
+                }
             }
         }
 
@@ -92,8 +101,11 @@ namespace CommodityMarketSim {
             if(result == DialogResult.OK || result == DialogResult.Yes) {
                 foreach(Team t in Market.TeamList) {
                     StreamWriter sw = new StreamWriter(Path.Combine(fbd.SelectedPath, t.Name + ".html"));
-                    sw.Write(t.GetHTML());
+                    sw.Write(t.GetHTML(false));
                     sw.Close();
+                    StreamWriter sw2 = new StreamWriter(Path.Combine(fbd.SelectedPath, t.Name + "-SummaryOnly.html"));
+                    sw2.Write(t.GetHTML(true));
+                    sw2.Close();
                 }
             } else {
                 MessageBox.Show(this, "No results were saved.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning );

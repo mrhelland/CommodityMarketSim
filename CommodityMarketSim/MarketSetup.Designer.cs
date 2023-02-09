@@ -49,7 +49,7 @@ namespace CommodityMarketSim {
             this.numTeamQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numTeamQuantity.Location = new System.Drawing.Point(16, 45);
             this.numTeamQuantity.Maximum = new decimal(new int[] {
-            8,
+            12,
             0,
             0,
             0});
@@ -63,7 +63,7 @@ namespace CommodityMarketSim {
             this.numTeamQuantity.TabIndex = 1;
             this.numTeamQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numTeamQuantity.Value = new decimal(new int[] {
-            2,
+            10,
             0,
             0,
             0});

@@ -63,7 +63,7 @@ namespace MarketFrameworkLibrary
             }
         }
 
-        public string GetHTML(int rownumber) {
+        public string GetHTML(int rownumber, bool isSummaryOnly = false) {
             string output = Properties.Settings.Default.HTMLTransactionTemplate;
             if(rownumber % 2 == 0) {
                 output = output.Replace("%ROWSTYLE%", "even");
@@ -73,8 +73,12 @@ namespace MarketFrameworkLibrary
             output = output.Replace("%TIME%", this.timestamp.ToShortTimeString());
             output = output.Replace("%COMMODITY%", this.commodity.Name);
             output = output.Replace("%QUANTITY%", this.quantity.ToString() + " unit(s)");
-            output = output.Replace("%PRICE%", Properties.Settings.Default.MonetarySymbol + this.unitprice.ToString());
-            if(this.success) {
+            if(isSummaryOnly) {
+                output = output.Replace("%PRICE%", "---");
+            } else {
+                output = output.Replace("%PRICE%", Properties.Settings.Default.MonetarySymbol + this.unitprice.ToString());
+            }
+            if(this.success || isSummaryOnly) {
                 output = output.Replace("%SUCCESS%", "OK");
             } else {
                 output = output.Replace("%SUCCESS%", "<b>FAILED</b>");

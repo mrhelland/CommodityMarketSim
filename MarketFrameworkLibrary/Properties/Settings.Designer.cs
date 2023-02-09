@@ -117,7 +117,7 @@ namespace MarketFrameworkLibrary.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
         public int TeamQuantity {
             get {
                 return ((int)(this["TeamQuantity"]));
@@ -129,7 +129,7 @@ namespace MarketFrameworkLibrary.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("25000")]
+        [global::System.Configuration.DefaultSettingValueAttribute("200000")]
         public int TeamBudget {
             get {
                 return ((int)(this["TeamBudget"]));
