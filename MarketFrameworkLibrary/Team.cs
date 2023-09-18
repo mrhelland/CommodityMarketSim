@@ -70,12 +70,32 @@ namespace MarketFrameworkLibrary
             return totals;
         }
 
-        public string GetHTML() {
+        public string GetHTML(bool summaryCountsOnly = false) {
+            List<Transaction> tempTransactions = null;
+            if(summaryCountsOnly) {
+                tempTransactions = new List<Transaction>();
+                foreach(Commodity c in Market.CommodityList) {
+                    int count = 0;
+                    foreach(Transaction t in this.Transactions) {
+                        if(t.Commodity.CommmodityType == c.CommmodityType) {
+                            count++;
+                        }
+                    }
+                    if(count > 0) {
+                        Transaction temp = new Transaction(DateTime.Now, this, c, count, 0);
+                        tempTransactions.Add(new Transaction(DateTime.Now, this, c, count, 0)); 
+                    }
+                }
+            } else {
+                tempTransactions = this.Transactions;
+            
+            }
+
             string output = Properties.Settings.Default.HTMLPageTemplate;
             string transactionsummary = " ";
             int rowcount = 0;
-            foreach(Transaction t in this.Transactions) {
-                transactionsummary += t.GetHTML(rowcount);
+            foreach(Transaction t in tempTransactions) {
+                transactionsummary += t.GetHTML(rowcount, summaryCountsOnly);
                 rowcount++;
             }
             string commoditysummary = Properties.Settings.Default.HTMLCommodityTemplate;

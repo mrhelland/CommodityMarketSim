@@ -50,10 +50,15 @@ namespace CommodityMarketSim
         }
 
         private void LoadTeams() {
+            if(Market.TeamList == null) {
+                return;
+            }
+
             foreach(Team t in Market.TeamList) {
                 TeamDisplay temp = new TeamDisplay();
                 temp.Team = t;
-                temp.Width = 200;
+                temp.Width = (flpTeams.Width - (temp.Margin.Left + temp.Margin.Right) * 7) / 5;
+                temp.MinimumSize = new Size(200, 64);
                 temp.Pending = null;
                 temp.PendingTransactionChanged += OnPendingTransactionChanged;
                 flpTeams.Controls.Add(temp);
@@ -64,7 +69,8 @@ namespace CommodityMarketSim
         private void LoadCommodities() {
             foreach(Commodity c in Market.CommodityList) {
                 CommodityDisplay temp = new CommodityDisplay();
-                temp.Width = 200;
+                temp.Width = (flpCommodities.Width - (temp.Margin.Left + temp.Margin.Right) * 7) / 5;
+                temp.MinimumSize = new Size(200, 64);
                 temp.Commodity = c;
                 flpCommodities.Controls.Add(temp);
             }
@@ -90,6 +96,24 @@ namespace CommodityMarketSim
                 round.ProcessTransactions();
             }
             this.ParentForm.Close();
+        }
+
+        public void FillBlanks() {
+            Commodity nothing = null;
+            foreach(Commodity c in Market.CommodityList) {
+                if(c.CommmodityType == Commodity.Commodities.none) {
+                    nothing = c;
+                }
+            }
+            foreach(TeamDisplay td in flpTeams.Controls) {
+                if(td.Pending == null) {
+                    td.Pending = new Transaction(DateTime.Now, td.Team, nothing, 1, 0);
+                }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e) {
+            FillBlanks();
         }
     }
 }

@@ -32,7 +32,6 @@ namespace CommodityMarketSim
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TeamDisplay));
             this.lblFunds = new System.Windows.Forms.Label();
-            this.lblName = new System.Windows.Forms.Label();
             this.pbIcon = new System.Windows.Forms.PictureBox();
             this.imgsTeams = new System.Windows.Forms.ImageList(this.components);
             this.pbCommodity = new System.Windows.Forms.PictureBox();
@@ -50,38 +49,21 @@ namespace CommodityMarketSim
             this.lblFunds.AutoEllipsis = true;
             this.lblFunds.BackColor = System.Drawing.Color.White;
             this.lblFunds.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblFunds.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFunds.Font = new System.Drawing.Font("Calibri", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFunds.ForeColor = System.Drawing.Color.Black;
-            this.lblFunds.Location = new System.Drawing.Point(70, 38);
-            this.lblFunds.Margin = new System.Windows.Forms.Padding(1, 1, 3, 3);
+            this.lblFunds.Location = new System.Drawing.Point(70, 2);
+            this.lblFunds.Margin = new System.Windows.Forms.Padding(2);
             this.lblFunds.Name = "lblFunds";
-            this.lblFunds.Size = new System.Drawing.Size(93, 30);
+            this.lblFunds.Size = new System.Drawing.Size(298, 64);
             this.lblFunds.TabIndex = 5;
             this.lblFunds.Text = "$0";
             this.lblFunds.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblName
-            // 
-            this.lblName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblName.AutoEllipsis = true;
-            this.lblName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblName.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblName.ForeColor = System.Drawing.Color.White;
-            this.lblName.Location = new System.Drawing.Point(70, 4);
-            this.lblName.Margin = new System.Windows.Forms.Padding(1, 3, 3, 1);
-            this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(93, 30);
-            this.lblName.TabIndex = 4;
-            this.lblName.Text = "Team Name";
-            this.lblName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // pbIcon
             // 
             this.pbIcon.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbIcon.Location = new System.Drawing.Point(4, 4);
-            this.pbIcon.Margin = new System.Windows.Forms.Padding(3, 3, 1, 3);
+            this.pbIcon.Location = new System.Drawing.Point(2, 2);
+            this.pbIcon.Margin = new System.Windows.Forms.Padding(2);
             this.pbIcon.Name = "pbIcon";
             this.pbIcon.Size = new System.Drawing.Size(64, 64);
             this.pbIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -109,10 +91,10 @@ namespace CommodityMarketSim
             this.pbCommodity.BackColor = System.Drawing.Color.White;
             this.pbCommodity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbCommodity.Image = ((System.Drawing.Image)(resources.GetObject("pbCommodity.Image")));
-            this.pbCommodity.Location = new System.Drawing.Point(99, 73);
-            this.pbCommodity.Margin = new System.Windows.Forms.Padding(3, 3, 1, 3);
+            this.pbCommodity.Location = new System.Drawing.Point(286, 70);
+            this.pbCommodity.Margin = new System.Windows.Forms.Padding(2);
             this.pbCommodity.Name = "pbCommodity";
-            this.pbCommodity.Size = new System.Drawing.Size(64, 64);
+            this.pbCommodity.Size = new System.Drawing.Size(82, 82);
             this.pbCommodity.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbCommodity.TabIndex = 7;
             this.pbCommodity.TabStop = false;
@@ -129,12 +111,12 @@ namespace CommodityMarketSim
             this.lblQuantity.AutoEllipsis = true;
             this.lblQuantity.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.lblQuantity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblQuantity.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQuantity.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblQuantity.ForeColor = System.Drawing.Color.Gray;
-            this.lblQuantity.Location = new System.Drawing.Point(4, 107);
-            this.lblQuantity.Margin = new System.Windows.Forms.Padding(1, 1, 3, 3);
+            this.lblQuantity.Location = new System.Drawing.Point(2, 120);
+            this.lblQuantity.Margin = new System.Windows.Forms.Padding(2);
             this.lblQuantity.Name = "lblQuantity";
-            this.lblQuantity.Size = new System.Drawing.Size(93, 30);
+            this.lblQuantity.Size = new System.Drawing.Size(280, 32);
             this.lblQuantity.TabIndex = 9;
             this.lblQuantity.Text = "0 units";
             this.lblQuantity.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -146,14 +128,14 @@ namespace CommodityMarketSim
             this.lblPrice.AutoEllipsis = true;
             this.lblPrice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.lblPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblPrice.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrice.Font = new System.Drawing.Font("Calibri", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPrice.ForeColor = System.Drawing.Color.Gray;
-            this.lblPrice.Location = new System.Drawing.Point(4, 73);
-            this.lblPrice.Margin = new System.Windows.Forms.Padding(1, 3, 3, 1);
+            this.lblPrice.Location = new System.Drawing.Point(2, 70);
+            this.lblPrice.Margin = new System.Windows.Forms.Padding(2);
             this.lblPrice.Name = "lblPrice";
-            this.lblPrice.Size = new System.Drawing.Size(93, 30);
+            this.lblPrice.Size = new System.Drawing.Size(280, 46);
             this.lblPrice.TabIndex = 8;
-            this.lblPrice.Text = Market.MonetarySymbol + "0";
+            this.lblPrice.Text = "ↂ0";
             this.lblPrice.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // imgsCommodities
@@ -185,10 +167,9 @@ namespace CommodityMarketSim
             this.Controls.Add(this.pbCommodity);
             this.Controls.Add(this.pbIcon);
             this.Controls.Add(this.lblFunds);
-            this.Controls.Add(this.lblName);
             this.Margin = new System.Windows.Forms.Padding(8);
             this.Name = "TeamDisplay";
-            this.Size = new System.Drawing.Size(166, 140);
+            this.Size = new System.Drawing.Size(370, 154);
             this.Load += new System.EventHandler(this.TeamDisplay_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCommodity)).EndInit();
@@ -199,7 +180,6 @@ namespace CommodityMarketSim
         #endregion
 
         private System.Windows.Forms.Label lblFunds;
-        private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.PictureBox pbIcon;
         private System.Windows.Forms.ImageList imgsTeams;
         private System.Windows.Forms.PictureBox pbCommodity;
