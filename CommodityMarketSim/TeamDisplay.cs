@@ -68,12 +68,12 @@ namespace CommodityMarketSim
 
         private void UpdateUI() {
             if(team == null) {
-                this.lblName.Text = "n/a";
+                //this.lblName.Text = "n/a";
                 this.lblFunds.Text = "n/a";
                 this.pbIcon.Image = null;
                 this.BackColor = Globals.GetFormBackcolor(false);
             } else {
-                this.lblName.Text = team.Name;
+                //this.lblName.Text = team.Name;
                 if(pending != null) {
                     this.lblFunds.Text = Market.MonetarySymbol + (team.Funds-pending.Totalprice).ToString();
                 } else {
@@ -83,10 +83,10 @@ namespace CommodityMarketSim
                 this.BackColor = Globals.GetFormBackcolor(team.Funds > 200);
             }
             if(showdropbox) {
-                this.Height = 140;
+                this.Height = 154;
                 pbCommodity.Visible = true;
             } else {
-                this.Height = 72;
+                this.Height = 68;
                 pbCommodity.Visible = false;
             }
             if(pending == null) {
@@ -131,6 +131,7 @@ namespace CommodityMarketSim
                 }
                 this.Pending = new Transaction(DateTime.Now, this.team, matched, last_quantity, matched.Price);
                 matched.Reserve(last_quantity);
+                ((CommodityDisplay)sender).UpdateUI();
             }
         }
 

@@ -54,11 +54,11 @@ namespace CommodityMarketSim
                 return;
             }
 
-            int index = 0;
             foreach(Team t in Market.TeamList) {
                 TeamDisplay temp = new TeamDisplay();
                 temp.Team = t;
-                temp.Width = 200;
+                temp.Width = (flpTeams.Width - (temp.Margin.Left + temp.Margin.Right) * 7) / 5;
+                temp.MinimumSize = new Size(200, 64);
                 temp.Pending = null;
                 temp.PendingTransactionChanged += OnPendingTransactionChanged;
                 flpTeams.Controls.Add(temp);
@@ -69,7 +69,8 @@ namespace CommodityMarketSim
         private void LoadCommodities() {
             foreach(Commodity c in Market.CommodityList) {
                 CommodityDisplay temp = new CommodityDisplay();
-                temp.Width = 200;
+                temp.Width = (flpCommodities.Width - (temp.Margin.Left + temp.Margin.Right) * 7) / 5;
+                temp.MinimumSize = new Size(200, 64);
                 temp.Commodity = c;
                 flpCommodities.Controls.Add(temp);
             }

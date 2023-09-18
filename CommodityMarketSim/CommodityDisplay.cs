@@ -36,12 +36,15 @@ namespace CommodityMarketSim {
             UpdateUI();
         }
 
-        private void UpdateUI() {
+        public void UpdateUI() {
             this.lblName.Text = commodity.Name;
             this.lblPrice.Text = "ↂ" + commodity.Price.ToString();
             this.lblQuantity.Text = (commodity.Available - commodity.Pendingunits).ToString() + " units";
             this.pbIcon.Image = imgsCommodities.Images[commodity.ImageIndex];
-            this.BackColor = Globals.GetFormBackcolor(commodity.Available > 0);
+
+            bool available = commodity.Available > 0 && commodity.Pendingunits < commodity.Available;
+            this.BackColor = Globals.GetFormBackcolor(available);
+            this.lblName.BackColor = Globals.GetCommodityBackcolor(available);
         }
 
         private void CommodityDisplay_Load(object sender, EventArgs e) {
@@ -54,6 +57,15 @@ namespace CommodityMarketSim {
 
         private void lblPrice_Click(object sender, EventArgs e) {
 
+        }
+
+
+        public enum DragDropStatus {
+            None,
+            Canceled,
+            Started,
+            Inprogress,
+            Completed
         }
 
         private void pbIcon_MouseDown(object sender, MouseEventArgs e) {
@@ -103,5 +115,11 @@ namespace CommodityMarketSim {
             }
         }
 
+        private void pbIcon_QueryContinueDrag(object sender, QueryContinueDragEventArgs e) {
+        // TODO: need to check if later undone in team display
+            if(e.Action == DragAction.Drop) {
+                UpdateUI();
+            }
+        }
     }
 }

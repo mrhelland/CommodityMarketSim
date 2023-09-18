@@ -25,6 +25,14 @@ namespace CommodityMarketSim {
             }
         }
 
+        public static Color GetCommodityBackcolor(bool available) {
+            if(available) {
+                return Color.DarkGreen;
+            } else {
+                return Color.Maroon;
+            }
+        }
+
         public static Color GetFieldBackcolor(UIIndicatorLevels level) {
             switch(level) {
                 case UIIndicatorLevels.NotAvailable:
