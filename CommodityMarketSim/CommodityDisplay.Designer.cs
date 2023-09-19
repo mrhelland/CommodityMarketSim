@@ -96,6 +96,7 @@
             this.pbIcon.TabStop = false;
             this.pbIcon.QueryContinueDrag += new System.Windows.Forms.QueryContinueDragEventHandler(this.pbIcon_QueryContinueDrag);
             this.pbIcon.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbIcon_MouseDown);
+            this.pbIcon.MouseEnter += new System.EventHandler(this.pbIcon_MouseEnter);
             // 
             // imgsCommodities
             // 

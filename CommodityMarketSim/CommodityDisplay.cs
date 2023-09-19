@@ -69,7 +69,7 @@ namespace CommodityMarketSim {
         }
 
         private void pbIcon_MouseDown(object sender, MouseEventArgs e) {
-            if(commodity.Available > 0) {
+            if(commodity.Available > 0 && commodity.Pendingunits < commodity.Available) {
                 pbIcon.DoDragDrop(Commodity.GetJSON(commodity), DragDropEffects.Copy);
             }
         }
@@ -116,9 +116,19 @@ namespace CommodityMarketSim {
         }
 
         private void pbIcon_QueryContinueDrag(object sender, QueryContinueDragEventArgs e) {
-        // TODO: need to check if later undone in team display
+            // TODO: need to check if later undone in team display
             if(e.Action == DragAction.Drop) {
                 UpdateUI();
+            } else if(e.Action == DragAction.Continue) {
+
+            }
+        }
+
+        private void pbIcon_MouseEnter(object sender, EventArgs e) {
+            if(commodity.Available > 0 && commodity.Pendingunits < commodity.Available) {
+                pbIcon.Cursor = Cursors.Hand;
+            } else {
+                pbIcon.Cursor = Cursors.Default;
             }
         }
     }
