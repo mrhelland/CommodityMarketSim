@@ -51,6 +51,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -63,6 +64,11 @@
     <Compile Include="Commodity.cs" />
     <Compile Include="Market.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -79,6 +85,20 @@
     <Compile Include="Utility.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\none.png" />
+    <None Include="Resources\notecards.png" />
+    <None Include="Resources\paper.png" />
+    <None Include="Resources\paperclip-lg.png" />
+    <None Include="Resources\paperclip-sm.png" />
+    <None Include="Resources\pen.png" />
+    <None Include="Resources\pencil.png" />
+    <None Include="Resources\pencils.png" />
+    <None Include="Resources\popsiclesticks.png" />
+    <None Include="Resources\rubberbands.png" />
+    <None Include="Resources\ruler.png" />
+    <None Include="Resources\scissors.png" />
+    <None Include="Resources\string.png" />
+    <None Include="Resources\tape.png" />
     <Content Include="RoboticsCommodityMarket.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -117,6 +137,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

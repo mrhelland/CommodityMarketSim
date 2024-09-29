@@ -48,20 +48,20 @@ namespace MarketFrameworkLibrary
 
         [DataMember()]
         public static Commodity[] DefaultCommodityList = {
-            new Commodity(20, "Rubber Bands", 2000, Commodity.Commodities.rubberband),
-            new Commodity(100, "Notecards", 3000, Commodity.Commodities.notecard),
-            new Commodity(25, "Small Paper Clips", 2000, Commodity.Commodities.sm_clip),
-            new Commodity(25, "Large Paper Clips", 3000, Commodity.Commodities.lg_clip),
-            new Commodity(200, "Copy Paper", 5000, Commodity.Commodities.paper),
-            new Commodity(100, "Popsicle Sticks", 3000, Commodity.Commodities.sticks),
-            new Commodity(40, "Masking Tape", 15000, Commodity.Commodities.tape),
-            new Commodity(40, "String", 15000, Commodity.Commodities.@string),
-            new Commodity(4, "Colored Pencils", 5000, Commodity.Commodities.pencilset),
-            new Commodity(6, "Round Stic Pen", 3000, Commodity.Commodities.pen),
-            new Commodity(6, "No.2 Pencil", 3000, Commodity.Commodities.pencil),
-            new Commodity(4, "12\" Ruler", 5000, Commodity.Commodities.ruler),
-            new Commodity(4, "Scissors", 5000, Commodity.Commodities.scissors),
-            new Commodity(10000, "Nothing", 0, Commodity.Commodities.none)
+            new Commodity(20, "Rubber Bands", 2000, "rubberbands"),
+            new Commodity(100, "Notecards", 3000, "notecards"),
+            new Commodity(25, "Small Paper Clips", 2000, "paperclip_sm"),
+            new Commodity(25, "Large Paper Clips", 3000, "paperclip_lg"),
+            new Commodity(200, "Copy Paper", 5000, "paper"),
+            new Commodity(100, "Popsicle Sticks", 3000, "popsiclesticks"),
+            new Commodity(40, "Masking Tape", 15000, "tape"),
+            new Commodity(40, "String", 15000, "_string"),
+            new Commodity(4, "Colored Pencils", 5000, "pencils"),
+            new Commodity(6, "Round Stic Pen", 3000, "pen"),
+            new Commodity(6, "No.2 Pencil", 3000, "pencil"),
+            new Commodity(4, "12\" Ruler", 5000, "ruler"),
+            new Commodity(4, "Scissors", 5000, "scissors"),
+            new Commodity(10000, "Nothing", 0, "none")
         };
 
         [DataMember(Name = "Rounds")]

@@ -2,30 +2,14 @@
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using System.IO;
+using System.Drawing;
 
 namespace MarketFrameworkLibrary
 {
     [DataContract]
     public class Commodity : IComparable<Commodity>, IEqualityComparer<Commodity>, IEquatable<Commodity>
     {
-
-        public enum Commodities {
-            rubberband,
-            notecard,
-            sm_clip,
-            lg_clip,
-            paper,
-            sticks,
-            tape,
-            @string,
-            pencilset,
-            pen,
-            pencil,
-            ruler,
-            scissors,
-            none
-        }
-
         public event EventHandler ValueChanged;
 
         [DataMember(Name = "Available")]
@@ -34,8 +18,8 @@ namespace MarketFrameworkLibrary
         private string name;
         [DataMember(Name = "Price")]
         private float price;
-        [DataMember(Name = "Type")]
-        private Commodity.Commodities type;
+        [DataMember(Name = "Icon")]
+        private string iconName;
 
         private int pendingunits;
         public int Pendingunits {
@@ -52,11 +36,9 @@ namespace MarketFrameworkLibrary
         public float Price {
             get => price;
         }
-        public Commodity.Commodities CommmodityType {
-            get => type;
-        }
-        public int ImageIndex {
-            get => (int)type;
+
+        public Image Icon {
+            get => (Image)Properties.Resources.ResourceManager.GetObject(iconName);
         }
 
         internal Commodity() {
@@ -64,11 +46,11 @@ namespace MarketFrameworkLibrary
             OnValueChanged();
         }
 
-        public Commodity(int available, string name, float price, Commodity.Commodities type) : this() {
+        public Commodity(int available, string name, float price, string iconName) : this() {
             this.available = available;
             this.name = name;
             this.price = price;
-            this.type = type;
+            this.iconName = iconName;
         }
 
         public bool HasStock(int quantity) {

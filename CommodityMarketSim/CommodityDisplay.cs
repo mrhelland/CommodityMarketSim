@@ -40,7 +40,7 @@ namespace CommodityMarketSim {
             this.lblName.Text = commodity.Name;
             this.lblPrice.Text = "ↂ" + commodity.Price.ToString();
             this.lblQuantity.Text = (commodity.Available - commodity.Pendingunits).ToString() + " units";
-            this.pbIcon.Image = imgsCommodities.Images[commodity.ImageIndex];
+            this.pbIcon.Image = commodity.Icon;
             this.BackColor = Globals.GetFormBackcolor(commodity.Available > 0);
         }
 
