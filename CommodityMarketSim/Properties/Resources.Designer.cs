@@ -63,9 +63,19 @@ namespace CommodityMarketSim.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap opera_R3iB4LCye0 {
+        internal static System.Drawing.Bitmap checker_pattern_64 {
             get {
-                object obj = ResourceManager.GetObject("opera_R3iB4LCye0", resourceCulture);
+                object obj = ResourceManager.GetObject("checker_pattern_64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap checker_pattern_dark_64 {
+            get {
+                object obj = ResourceManager.GetObject("checker_pattern_dark_64", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -76,26 +86,6 @@ namespace CommodityMarketSim.Properties {
         internal static System.Drawing.Bitmap target {
             get {
                 object obj = ResourceManager.GetObject("target", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap transparent_checker {
-            get {
-                object obj = ResourceManager.GetObject("transparent_checker", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap transparent_checker_64 {
-            get {
-                object obj = ResourceManager.GetObject("transparent_checker_64", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

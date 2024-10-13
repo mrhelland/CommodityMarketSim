@@ -11,9 +11,17 @@ using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
 using MarketFrameworkLibrary;
 using System.Drawing.Imaging;
+using Newtonsoft.Json.Linq;
 
 namespace CommodityMarketSim {
     public partial class CroppablePictureBox : PictureBox {
+
+        public event EventHandler<ImageCropChangedEventArgs> ImageCropChanged;
+
+        protected virtual void OnImageCropChanged(Image CroppedImage) {
+            ImageCropChangedEventArgs e = new ImageCropChangedEventArgs(CroppedImage);
+            ImageCropChanged?.Invoke(this, e);
+        }
 
         private Point startCorner;
         private Point endCorner;
@@ -40,6 +48,17 @@ namespace CommodityMarketSim {
                 else {
                     return false;
                 }
+            }
+        }
+
+        public new Image Image {
+            get { 
+                return base.Image; 
+            }
+
+            set { 
+                base.Image = value;
+                OnImageCropChanged(value);
             }
         }
 
@@ -262,8 +281,12 @@ namespace CommodityMarketSim {
             }
             isSelecting = false;
             this.Invalidate();
+            OnImageCropChanged(getCroppedImage(64));
+
 
         }
+
+
 
         private void CroppablePictureBox_MouseMove(object sender, MouseEventArgs e) {
             if(lastMouseLocation == null) {
