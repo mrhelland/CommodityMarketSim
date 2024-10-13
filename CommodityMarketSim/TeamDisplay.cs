@@ -97,7 +97,7 @@ namespace CommodityMarketSim
             } else {
                 this.lblPrice.Text = Market.Instance.MonetarySymbol + pending.Unitprice.ToString();
                 this.lblQuantity.Text = pending.Quantity.ToString() + " units";
-                this.pbCommodity.Image = pending.Commodity.Icon;
+                this.pbCommodity.Image = pending.Commodity.Image;
             }
         }
 

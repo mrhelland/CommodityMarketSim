@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CommodityMarketSim {
-    public partial class CommodityEditor : UserControl {
+    public partial class CommodityEditor : Form {
         public CommodityEditor() {
             InitializeComponent();
         }

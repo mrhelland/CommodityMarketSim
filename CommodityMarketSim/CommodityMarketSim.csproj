@@ -47,6 +47,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -67,10 +70,28 @@
       <DependentUpon>CommodityDisplay.cs</DependentUpon>
     </Compile>
     <Compile Include="CommodityEditor.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="CommodityEditor.Designer.cs">
       <DependentUpon>CommodityEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommodityIconBrowser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CommodityIconBrowser.Designer.cs">
+      <DependentUpon>CommodityIconBrowser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CropImageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CropImageForm.Designer.cs">
+      <DependentUpon>CropImageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CroppablePictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CroppablePictureBox.Designer.cs">
+      <DependentUpon>CroppablePictureBox.cs</DependentUpon>
     </Compile>
     <Compile Include="MarketSetup.cs">
       <SubType>Form</SubType>
@@ -111,6 +132,15 @@
     <EmbeddedResource Include="CommodityEditor.resx">
       <DependentUpon>CommodityEditor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CommodityIconBrowser.resx">
+      <DependentUpon>CommodityIconBrowser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CropImageForm.resx">
+      <DependentUpon>CropImageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CroppablePictureBox.resx">
+      <DependentUpon>CroppablePictureBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MarketSetup.resx">
       <DependentUpon>MarketSetup.cs</DependentUpon>
     </EmbeddedResource>
@@ -136,6 +166,9 @@
     <EmbeddedResource Include="TeamDisplay.resx">
       <DependentUpon>TeamDisplay.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\MarketFrameworkLibrary.Commodity.datasource" />
+    <None Include="Properties\DataSources\MarketFrameworkLibrary.Market.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -163,7 +196,59 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Images\target.png" />
+    <None Include="Images\target.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\nothing.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\notecards.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\copypaper.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\largepaperclips.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\smallpaperclips.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\roundsticpen.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\no2pencil.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\coloredpencils.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\placeholder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\popsiclesticks.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\rubberbands.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\12ruler.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\scissors.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\string.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\maskingtape.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Images\transparent_checker_64.png" />
+    <None Include="Resources\transparent_checker.png" />
+    <None Include="Resources\opera_R3iB4LCye0.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

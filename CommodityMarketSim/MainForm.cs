@@ -17,15 +17,19 @@ namespace CommodityMarketSim {
 
         public MainForm() {
             InitializeComponent();
+            DirectoryInfo exeDirectory = new FileInfo(Application.ExecutablePath).Directory;
+            string imagesPath = Path.Combine(exeDirectory.FullName, "Images");
+            Commodity.BuildImageList(new DirectoryInfo(imagesPath));
 
         }
 
         private void MainForm_Load(object sender, EventArgs e) {
             currentround = 1;
             MarketSetup ms = new MarketSetup();
-            ms.ShowDialog();
-            LoadTeams();
-            LoadCommodities();
+            if(ms.ShowDialog() == DialogResult.OK) {
+                LoadTeams();
+                LoadCommodities();
+            }
         }
 
         private void btnNextRound_Click(object sender, EventArgs e) {
@@ -58,7 +62,7 @@ namespace CommodityMarketSim {
 
         private void LoadCommodities() {
             tlpCommodities.ColumnStyles.Clear();
-            tlpCommodities.ColumnCount = (int)Math.Ceiling(Market.Instance.Commodities.Length / 3.0);
+            tlpCommodities.ColumnCount = (int)Math.Ceiling(Market.Instance.Commodities.Count / 3.0);
             tlpCommodities.RowCount = 3;
             tlpCommodities.RowStyles.Clear();
             tlpCommodities.RowStyles.Add(new RowStyle(SizeType.Percent, 33.33f));
