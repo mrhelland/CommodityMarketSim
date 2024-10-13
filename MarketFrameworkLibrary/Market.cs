@@ -41,28 +41,10 @@ namespace MarketFrameworkLibrary
         }
 
         [DataMember(Name ="Commodities")]
-        internal Commodity[] commodities;
-        public Commodity[] Commodities {
+        internal List<Commodity> commodities;
+        public List<Commodity> Commodities {
             get => this.commodities;
         }
-
-        [DataMember()]
-        public static Commodity[] DefaultCommodityList = {
-            new Commodity(20, "Rubber Bands", 2000, "rubberbands"),
-            new Commodity(100, "Notecards", 3000, "notecards"),
-            new Commodity(25, "Small Paper Clips", 2000, "paperclip_sm"),
-            new Commodity(25, "Large Paper Clips", 3000, "paperclip_lg"),
-            new Commodity(200, "Copy Paper", 5000, "paper"),
-            new Commodity(100, "Popsicle Sticks", 3000, "popsiclesticks"),
-            new Commodity(40, "Masking Tape", 15000, "tape"),
-            new Commodity(40, "String", 15000, "_string"),
-            new Commodity(4, "Colored Pencils", 5000, "pencils"),
-            new Commodity(6, "Round Stic Pen", 3000, "pen"),
-            new Commodity(6, "No.2 Pencil", 3000, "pencil"),
-            new Commodity(4, "12\" Ruler", 5000, "ruler"),
-            new Commodity(4, "Scissors", 5000, "scissors"),
-            new Commodity(10000, "Nothing", 0, "none")
-        };
 
         [DataMember(Name = "Rounds")]
         internal List<PurchaseRound> rounds;
@@ -73,7 +55,7 @@ namespace MarketFrameworkLibrary
 
         public Market() {
             rounds = new List<PurchaseRound>();
-            this.commodities = DefaultCommodityList;
+            this.commodities = new List<Commodity>(Commodity.DefaultCommodityList);
             Market.instance = this;        
         }
 
@@ -83,7 +65,7 @@ namespace MarketFrameworkLibrary
             this.monetarySymbol = monetarySymbol;
         }
 
-        public Market(int teamCount, int teamBudget, String monetarySymbol, Commodity[] commodities) : this(teamCount, teamBudget, monetarySymbol) {
+        public Market(int teamCount, int teamBudget, String monetarySymbol, List<Commodity> commodities) : this(teamCount, teamBudget, monetarySymbol) {
             this.commodities = commodities;
         }
 
