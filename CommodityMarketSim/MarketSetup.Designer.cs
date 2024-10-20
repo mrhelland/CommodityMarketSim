@@ -250,6 +250,7 @@ namespace CommodityMarketSim {
             this.btnSaveSetup.TabIndex = 13;
             this.btnSaveSetup.Text = "Save Setup...";
             this.btnSaveSetup.UseVisualStyleBackColor = true;
+            this.btnSaveSetup.Click += new System.EventHandler(this.btnSaveSetup_Click);
             // 
             // tableLayoutPanel1
             // 

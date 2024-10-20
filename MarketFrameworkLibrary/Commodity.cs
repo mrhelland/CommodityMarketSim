@@ -50,7 +50,9 @@ namespace MarketFrameworkLibrary
         [DataMember(Name = "Price")]
         private float price;
         [DataMember(Name = "Available")]
-        private int available;        
+        private int available;
+        [DataMember(Name = "ImageName")]
+        private string imageName;
 
         private int pendingunits;
         public int PendingUnits {
@@ -67,12 +69,13 @@ namespace MarketFrameworkLibrary
             get => available;
         }
 
-        private string imageName;
-        public void setImageName(string imageName) {
-            this.imageName = imageName;
-        }
-        public string getImageName() {
-            return this.imageName;
+        public string ImageName {
+            get {
+                return this.imageName;
+            }
+            set {
+                this.imageName = value;
+            }
         }
 
         public Image Image {
@@ -80,7 +83,6 @@ namespace MarketFrameworkLibrary
                 if(images == null) {
                     throw new InvalidOperationException("The image list has not been created yet. ");
                 }
-
                 if(images.ContainsKey(imageName)) {
                     return images[imageName];
                 } else {

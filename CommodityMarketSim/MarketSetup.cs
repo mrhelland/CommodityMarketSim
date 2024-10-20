@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -142,6 +143,36 @@ namespace CommodityMarketSim {
 
         private void txtMonetarySymbol_TextChanged(object sender, EventArgs e) {
             bindCommodityGrid(commoditySource);
+        }
+
+        private void btnSaveSetup_Click(object sender, EventArgs e) {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.InitialDirectory = Properties.Settings.Default.LastSavePath;
+            sfd.DefaultExt = "xml";
+            sfd.Filter = "xml files (*.xml)|*.xml|All files (*.*)|*.*";
+            if(sfd.ShowDialog() == DialogResult.OK) {
+                try {
+                    Market temp = createMarketFromCurrent();
+                    temp.Save(sfd.FileName);
+                }
+                catch(Exception ex) {
+                    MessageBox.Show("Unable to save: \n" + ex.Message, "Save Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private Market createMarketFromCurrent() {
+            Properties.Settings.Default.TeamQuantity = (int)this.numTeamQuantity.Value;
+            Properties.Settings.Default.MonetarySymbol = this.txtMonetarySymbol.Text;
+            Properties.Settings.Default.TeamBudget = (int)this.numTeamBudget.Value;
+            Properties.Settings.Default.Save();
+            Market newInstance = new Market(Properties.Settings.Default.TeamQuantity, Properties.Settings.Default.TeamBudget, Properties.Settings.Default.MonetarySymbol);
+            List<Team> teams = new List<Team>();
+            for(int i = 0; i < Properties.Settings.Default.TeamQuantity; i++) {
+                teams.Add(new Team(i + 1, "Team " + (i + 1).ToString(), Properties.Settings.Default.TeamBudget));
+            }
+            newInstance.TeamList = teams.ToArray();
+            return newInstance;
         }
     }
 }
