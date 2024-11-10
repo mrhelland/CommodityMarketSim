@@ -10,9 +10,11 @@ namespace MarketFrameworkLibrary
     [DataContract]
     public class Market
     {
-        private static Market instance; 
-        public static Market Instance {
-            get => instance;
+        [DataMember(Name = "Configuration")]
+        internal MarketConfiguration configuration;
+        public MarketConfiguration Configuration {
+            get => configuration;
+            set => this.configuration = value;
         }
 
         [DataMember(Name="TeamList")]
@@ -20,24 +22,6 @@ namespace MarketFrameworkLibrary
         public Team[] TeamList {
             get => teamList;
             set => teamList = value;
-        }
-
-        [DataMember(Name="TeamCount")]
-        internal int teamCount;
-        public int TeamCount {
-            get => teamCount;
-        }
-
-        [DataMember(Name="TeamBudget")]
-        internal int teamBudget;
-        public int TeamBudget {
-            get => teamBudget;
-        }
-
-        [DataMember(Name="MonetarySymbol")]
-        internal string monetarySymbol;
-        public string MonetarySymbol {
-            get => monetarySymbol;
         }
 
         [DataMember(Name ="Commodities")]
@@ -53,20 +37,18 @@ namespace MarketFrameworkLibrary
             set => rounds = value;
         }
 
-        public Market() {
-            rounds = new List<PurchaseRound>();
-            this.commodities = new List<Commodity>(Commodity.DefaultCommodityList);
-            Market.instance = this;        
+        public Market() : this(Properties.Settings.Default.DefaultTeamCount, Properties.Settings.Default.DefaultTeamBudget, Properties.Settings.Default.DefaultMonetarySymbol, new List<Commodity>()) {
         }
 
-        public Market(int teamCount, int teamBudget, String monetarySymbol) : this() {
-            this.teamCount = teamCount;
-            this.teamBudget = teamBudget;
-            this.monetarySymbol = monetarySymbol;
+        public Market(int teamCount, int teamBudget, String monetarySymbol) : this(teamCount, teamBudget, monetarySymbol, new List<Commodity>()) {
         }
 
-        public Market(int teamCount, int teamBudget, String monetarySymbol, List<Commodity> commodities) : this(teamCount, teamBudget, monetarySymbol) {
+        public Market(int teamCount, int teamBudget, String monetarySymbol, List<Commodity> commodities) {
             this.commodities = commodities;
+            this.rounds = new List<PurchaseRound>();
+            this.configuration = new MarketConfiguration(teamCount, teamBudget, monetarySymbol);
+            this.commodities = new List<Commodity>(Commodity.DefaultCommodityList);
+
         }
 
         public Exception Save(string filename) {

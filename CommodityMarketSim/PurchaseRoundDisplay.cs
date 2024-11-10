@@ -22,6 +22,15 @@ namespace CommodityMarketSim
                 UpdateUI();
             }
         }
+        private Market market;
+        public Market Market {
+            get => market;
+            set {
+                market = value;
+                LoadTeams();
+                LoadCommodities();
+            }
+        }
 
         public PurchaseRoundDisplay()
         {
@@ -45,13 +54,12 @@ namespace CommodityMarketSim
         }
 
         private void PurchaseRoundDisplay_Load(object sender, EventArgs e) {
-            LoadTeams();
-            LoadCommodities();
+            
         }
 
         private void LoadTeams() {
-            foreach(Team t in Market.Instance.TeamList) {
-                TeamDisplay temp = new TeamDisplay();
+            foreach(Team t in this.market.TeamList) {
+                TeamDisplay temp = new TeamDisplay(this.market);
                 temp.Team = t;
                 temp.Width = 200;
                 temp.Pending = null;
@@ -62,7 +70,7 @@ namespace CommodityMarketSim
         }
 
         private void LoadCommodities() {
-            foreach(Commodity c in Market.Instance.Commodities) {
+            foreach(Commodity c in this.market.Commodities) {
                 CommodityDisplay temp = new CommodityDisplay();
                 temp.Width = 200;
                 temp.Commodity = c;
@@ -87,7 +95,7 @@ namespace CommodityMarketSim
                     }
                     round.Transactions.Add(td.Pending);
                 }
-                round.ProcessTransactions();
+                round.ProcessTransactions(this.market);
             }
             this.ParentForm.Close();
         }

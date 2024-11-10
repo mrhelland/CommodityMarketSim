@@ -74,7 +74,7 @@ namespace MarketFrameworkLibrary
             }
         }
 
-        public string GetHTML(int rownumber) {
+        public string GetHTML(Market m, int rownumber) {
             string output = Properties.Settings.Default.HTMLTransactionTemplate;
             if(rownumber % 2 == 0) {
                 output = output.Replace("%ROWSTYLE%", "even");
@@ -84,7 +84,7 @@ namespace MarketFrameworkLibrary
             output = output.Replace("%TIME%", this.timestamp.ToShortTimeString());
             output = output.Replace("%COMMODITY%", this.commodity.Name);
             output = output.Replace("%QUANTITY%", this.quantity.ToString() + " unit(s)");
-            output = output.Replace("%PRICE%", Market.Instance.MonetarySymbol + this.unitprice.ToString());
+            output = output.Replace("%PRICE%", m.Configuration.MonetarySymbol + this.unitprice.ToString());
             if(this.success) {
                 output = output.Replace("%SUCCESS%", "OK");
             } else {

@@ -9,13 +9,18 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MarketFrameworkLibrary;
 using System.IO;
+using CommodityMarketSim.Properties;
+using System.Diagnostics;
 
 namespace CommodityMarketSim {
     public partial class MainForm : Form {
 
         private int currentround;
+        private Market market;
 
         public MainForm() {
+            if(Debugger.IsAttached)
+                Settings.Default.Reset();
             InitializeComponent();
             DirectoryInfo exeDirectory = new FileInfo(Application.ExecutablePath).Directory;
             string imagesPath = Path.Combine(exeDirectory.FullName, "Images");
@@ -27,6 +32,7 @@ namespace CommodityMarketSim {
             currentround = 1;
             MarketSetup ms = new MarketSetup();
             if(ms.ShowDialog() == DialogResult.OK) {
+                this.market = ms.Market;
                 LoadTeams();
                 LoadCommodities();
             }
@@ -34,7 +40,7 @@ namespace CommodityMarketSim {
 
         private void btnNextRound_Click(object sender, EventArgs e) {
             PurchaseRound temp = new PurchaseRound(currentround);
-            PurchaseRoundForm form = new PurchaseRoundForm();
+            PurchaseRoundForm form = new PurchaseRoundForm(this.market);
            
             form.Round = temp;
             form.ShowDialog();
@@ -43,14 +49,14 @@ namespace CommodityMarketSim {
 
         private void LoadTeams() {
             tlpTeams.ColumnStyles.Clear();
-            tlpTeams.ColumnCount = Market.Instance.TeamList.Length;
+            tlpTeams.ColumnCount = this.market.TeamList.Length;
             tlpTeams.RowCount = 1;
             tlpTeams.RowStyles.Clear();
             tlpTeams.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
             int column = 0 ;
-            foreach(Team t in Market.Instance.TeamList) {
-                tlpTeams.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100 / Market.Instance.TeamList.Length));
-                TeamDisplay temp = new TeamDisplay();
+            foreach(Team t in this.market.TeamList) {
+                tlpTeams.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100 / this.market.TeamList.Length));
+                TeamDisplay temp = new TeamDisplay(this.market);
                 temp.Team = t;
                 temp.ShowDropBox = false;
                 temp.Pending = null;
@@ -62,7 +68,7 @@ namespace CommodityMarketSim {
 
         private void LoadCommodities() {
             tlpCommodities.ColumnStyles.Clear();
-            tlpCommodities.ColumnCount = (int)Math.Ceiling(Market.Instance.Commodities.Count / 3.0);
+            tlpCommodities.ColumnCount = (int)Math.Ceiling(this.market.Commodities.Count / 3.0);
             tlpCommodities.RowCount = 3;
             tlpCommodities.RowStyles.Clear();
             tlpCommodities.RowStyles.Add(new RowStyle(SizeType.Percent, 33.33f));
@@ -74,7 +80,7 @@ namespace CommodityMarketSim {
             }
             int column = 0;
             int row = 0;
-            foreach(Commodity c in Market.Instance.Commodities) {
+            foreach(Commodity c in this.market.Commodities) {
                 CommodityDisplay temp = new CommodityDisplay();
                 temp.Commodity = c;
                 temp.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom | AnchorStyles.Top;
@@ -93,9 +99,9 @@ namespace CommodityMarketSim {
             fbd.RootFolder = Environment.SpecialFolder.MyComputer;
             DialogResult result = fbd.ShowDialog();
             if(result == DialogResult.OK || result == DialogResult.Yes) {
-                foreach(Team t in Market.Instance.TeamList) {
+                foreach(Team t in this.market.TeamList) {
                     StreamWriter sw = new StreamWriter(Path.Combine(fbd.SelectedPath, t.Name + ".html"));
-                    sw.Write(t.GetHTML());
+                    sw.Write(t.GetHTML(this.market));
                     sw.Close();
                 }
             } else {
@@ -114,7 +120,7 @@ namespace CommodityMarketSim {
             sfd.DefaultExt = "xml";
             sfd.Filter = "xml files (*.xml)|*.xml|All files (*.*)|*.*";
             if(sfd.ShowDialog() == DialogResult.OK) {
-                Market.Instance.Save(sfd.FileName);
+                this.market.Save(sfd.FileName);
                 Properties.Settings.Default.LastSavePath = sfd.FileName;
             }
         }

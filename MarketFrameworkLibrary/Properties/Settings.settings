@@ -109,5 +109,14 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\RoboticsCommodityMarket.mdf;Integrated Security=True;Connect Timeout=30;Encrypt=True</Value>
     </Setting>
+    <Setting Name="DefaultTeamCount" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="DefaultTeamBudget" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">200000</Value>
+    </Setting>
+    <Setting Name="DefaultMonetarySymbol" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ↂ</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

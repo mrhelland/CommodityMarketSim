@@ -82,12 +82,12 @@ namespace MarketFrameworkLibrary
             return totals;
         }
 
-        public string GetHTML() {
+        public string GetHTML(Market m) {
             string output = Properties.Settings.Default.HTMLPageTemplate;
             string transactionsummary = " ";
             int rowcount = 0;
             foreach(Transaction t in this.Transactions) {
-                transactionsummary += t.GetHTML(rowcount);
+                transactionsummary += t.GetHTML(m, rowcount);
                 rowcount++;
             }
             string commoditysummary = Properties.Settings.Default.HTMLCommodityTemplate;

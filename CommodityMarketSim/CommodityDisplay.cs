@@ -28,6 +28,12 @@ namespace CommodityMarketSim {
             }
         }
 
+        private Market market;
+        public Market Market {
+            get => market;
+            set => market = value;
+        }
+
         public CommodityDisplay() {
             InitializeComponent();
         }
@@ -80,7 +86,7 @@ namespace CommodityMarketSim {
             Commodity matched = null;
             if(!String.IsNullOrEmpty(json)) {
                 Commodity fromJSON = Commodity.GetCommodity(json);
-                foreach(Commodity c in Market.Instance.Commodities) {
+                foreach(Commodity c in this.market.Commodities) {
                     if(String.Compare(c.Name, fromJSON.Name) == 0) {
                         matched = c;
                         break;

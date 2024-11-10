@@ -16,6 +16,8 @@ namespace CommodityMarketSim
 
         public event EventHandler PendingTransactionChanged;
 
+        private Market market;
+
         private Team team;
         public Team Team {
             get => team;
@@ -51,7 +53,8 @@ namespace CommodityMarketSim
             }
         }
 
-        public TeamDisplay() {
+        public TeamDisplay(Market market) {
+            this.market = market;
             InitializeComponent();
             pbCommodity.AllowDrop = true;
         }
@@ -76,9 +79,9 @@ namespace CommodityMarketSim
             } else {
                 this.lblName.Text = team.Name;
                 if(pending != null) {
-                    this.lblFunds.Text = Market.Instance.MonetarySymbol + (team.Funds-pending.Totalprice).ToString();
+                    this.lblFunds.Text = this.market.Configuration.MonetarySymbol + (team.Funds-pending.Totalprice).ToString();
                 } else {
-                    this.lblFunds.Text = Market.Instance.MonetarySymbol + team.Funds.ToString();
+                    this.lblFunds.Text = this.market.Configuration.MonetarySymbol + team.Funds.ToString();
                 }
                 this.pbIcon.Image = imgsTeams.Images[team.ImageIndex];
                 this.BackColor = Globals.GetFormBackcolor(team.Funds > 200);
@@ -91,11 +94,11 @@ namespace CommodityMarketSim
                 pbCommodity.Visible = false;
             }
             if(pending == null) {
-                this.lblPrice.Text = Market.Instance.MonetarySymbol + "0";
+                this.lblPrice.Text = this.market.Configuration.MonetarySymbol + "0";
                 this.lblQuantity.Text = "0 units";
                 this.pbCommodity.Image = Properties.Resources.target;
             } else {
-                this.lblPrice.Text = Market.Instance.MonetarySymbol + pending.Unitprice.ToString();
+                this.lblPrice.Text = this.market.Configuration.MonetarySymbol + pending.Unitprice.ToString();
                 this.lblQuantity.Text = pending.Quantity.ToString() + " units";
                 this.pbCommodity.Image = pending.Commodity.Image;
             }
@@ -119,7 +122,7 @@ namespace CommodityMarketSim
             if(!String.IsNullOrEmpty(json)) {
                 Commodity fromJSON = Commodity.GetCommodity(json);
                 Commodity matched = null;
-                foreach(Commodity c in Market.Instance.Commodities) {
+                foreach(Commodity c in this.market.Commodities) {
                     if(String.Compare(c.Name, fromJSON.Name) == 0) {
                         matched = c;
                     }

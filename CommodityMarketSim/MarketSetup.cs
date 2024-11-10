@@ -22,36 +22,50 @@ namespace CommodityMarketSim {
         private DataGridViewColumn columnPrice;
         private DataGridViewColumn columnImage;
 
-        public MarketSetup() {
-            InitializeComponent();
-            commodityList = new List<Commodity>();
-            commodityList.AddRange(Commodity.DefaultCommodityList);
-            commoditySource = new BindingSource();
-            commoditySource.AllowNew = true;
-            commoditySource.DataSource = commodityList;
-            bindCommodityGrid(commoditySource);
+        private Market market;
+        public Market Market {
+            get => market;
+            set {
+                market = value;
+                updateControlValues();
+            }
         }
 
-        private void bindCommodityGrid(BindingSource source) {
+        public MarketSetup() {
+            InitializeComponent();
+            bindCommodityGrid();
+        }
+
+        private void bindCommodityGrid() {
+            commoditySource = new BindingSource();
+            commoditySource.AllowNew = true;
+            if(market == null) {
+                commodityList = new List<Commodity>();
+                commodityList.AddRange(Commodity.DefaultCommodityList);
+                commoditySource.DataSource = commodityList;
+            }
+            else {
+                commoditySource.DataSource = this.market.Commodities;
+            }
+
             dgvCommodities.Font = new Font(this.Font.FontFamily, 12);
             dgvCommodities.AllowUserToAddRows = true;            
             dgvCommodities.DefaultCellStyle.Font = new Font(this.Font.FontFamily, 12);
             dgvCommodities.RowTemplate.Height = 32;
             dgvCommodities.DataSource = null;
-            dgvCommodities.DataSource = source;
+            dgvCommodities.DataSource = commoditySource;
 
             foreach(DataGridViewColumn c in dgvCommodities.Columns) {
                 string propertyName = c.DataPropertyName.ToLower();
-                if(propertyName.Contains("pending")) {
+                if(propertyName.ToLower().Contains("pending") || propertyName.ToLower().Contains("imagename")) {
                     c.Visible = false;
-                    c.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
                 }
-                else if(propertyName.Contains("name")) {
+                else if(propertyName.ToLower().Contains("name")) {
                     columnName = c;
                     c.Width = 256;
                     c.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
                 }
-                else if(propertyName.Contains("image")) {
+                else if(propertyName.ToLower().Contains("image")) {
                     columnImage = c;
                     c.Width = 64;
                     c.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -60,7 +74,7 @@ namespace CommodityMarketSim {
                     imgCol.ImageLayout = DataGridViewImageCellLayout.Zoom;
                     imgCol.Image = (Image)Properties.Resources.ResourceManager.GetObject("placeholder");
                 }
-                else if(propertyName.Contains("price")) {
+                else if(propertyName.ToLower().Contains("price")) {
                     NumberFormatInfo format = (NumberFormatInfo)NumberFormatInfo.CurrentInfo.Clone();
                     format.CurrencySymbol = this.txtMonetarySymbol.Text;
                     format.CurrencyDecimalDigits = 0;
@@ -70,7 +84,7 @@ namespace CommodityMarketSim {
                     c.DefaultCellStyle.FormatProvider = format;
                     c.DefaultCellStyle.Format = "c";
                 }
-                else if(propertyName.Contains("available")) {
+                else if(propertyName.ToLower().Contains("available")) {
                     columnAvailable = c;
                     c.Width = 128;
                     c.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -79,16 +93,24 @@ namespace CommodityMarketSim {
         }
 
         private void MarketSetup_Load(object sender, EventArgs e) {
-            this.numTeamQuantity.Value = Properties.Settings.Default.TeamQuantity;
-            this.txtMonetarySymbol.Text = Properties.Settings.Default.MonetarySymbol;
-            this.numTeamBudget.Value = Properties.Settings.Default.TeamBudget;
+            updateControlValues();
+            bindCommodityGrid();
+        }
+
+        private void updateControlValues() {
+            if(this.market == null) {
+                this.numTeamQuantity.Value = Properties.Settings.Default.TeamQuantity;
+                this.txtMonetarySymbol.Text = Properties.Settings.Default.MonetarySymbol;
+                this.numTeamBudget.Value = Properties.Settings.Default.TeamBudget;
+            }
+            else {
+                this.numTeamQuantity.Value = this.market.Configuration.TeamCount;
+                this.txtMonetarySymbol.Text = this.market.Configuration.MonetarySymbol;
+                this.numTeamBudget.Value = this.market.Configuration.TeamBudget;
+            }
         }
 
         private void btnStart_Click(object sender, EventArgs e) {
-            Properties.Settings.Default.TeamQuantity = (int)this.numTeamQuantity.Value;
-            Properties.Settings.Default.MonetarySymbol = this.txtMonetarySymbol.Text;
-            Properties.Settings.Default.TeamBudget = (int)this.numTeamBudget.Value;
-            Properties.Settings.Default.Save();
             Market newInstance = new Market(Properties.Settings.Default.TeamQuantity, Properties.Settings.Default.TeamBudget, Properties.Settings.Default.MonetarySymbol);
             List<Team> teams = new List<Team>();
             for(int i = 0; i < Properties.Settings.Default.TeamQuantity; i++) {
@@ -96,6 +118,7 @@ namespace CommodityMarketSim {
             }
             newInstance.TeamList = teams.ToArray();
             this.DialogResult = DialogResult.OK;
+            this.market = newInstance;
             this.Close();
         }
 
@@ -119,12 +142,10 @@ namespace CommodityMarketSim {
             if(ofd.ShowDialog() == DialogResult.OK) {
                 Market newInstance = Market.Load(ofd.FileName);
                 Properties.Settings.Default.LastSavePath = new FileInfo(ofd.FileName).DirectoryName;
-                Properties.Settings.Default.TeamQuantity = newInstance.TeamCount;
-                Properties.Settings.Default.MonetarySymbol = newInstance.MonetarySymbol;
-                Properties.Settings.Default.TeamBudget = newInstance.TeamBudget;
                 Properties.Settings.Default.Save();
+                this.market = newInstance;
+                updateControlValues();
             }
-            this.Close();
         }
 
         private void MarketSetup_FormClosed(object sender, FormClosedEventArgs e) {
@@ -142,7 +163,7 @@ namespace CommodityMarketSim {
         }
 
         private void txtMonetarySymbol_TextChanged(object sender, EventArgs e) {
-            bindCommodityGrid(commoditySource);
+            bindCommodityGrid();
         }
 
         private void btnSaveSetup_Click(object sender, EventArgs e) {
@@ -154,6 +175,7 @@ namespace CommodityMarketSim {
                 try {
                     Market temp = createMarketFromCurrent();
                     temp.Save(sfd.FileName);
+                    MessageBox.Show("Market setup has been saved!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch(Exception ex) {
                     MessageBox.Show("Unable to save: \n" + ex.Message, "Save Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -162,10 +184,6 @@ namespace CommodityMarketSim {
         }
 
         private Market createMarketFromCurrent() {
-            Properties.Settings.Default.TeamQuantity = (int)this.numTeamQuantity.Value;
-            Properties.Settings.Default.MonetarySymbol = this.txtMonetarySymbol.Text;
-            Properties.Settings.Default.TeamBudget = (int)this.numTeamBudget.Value;
-            Properties.Settings.Default.Save();
             Market newInstance = new Market(Properties.Settings.Default.TeamQuantity, Properties.Settings.Default.TeamBudget, Properties.Settings.Default.MonetarySymbol);
             List<Team> teams = new List<Team>();
             for(int i = 0; i < Properties.Settings.Default.TeamQuantity; i++) {

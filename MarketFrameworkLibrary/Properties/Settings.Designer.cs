@@ -148,5 +148,35 @@ namespace MarketFrameworkLibrary.Properties {
                 return ((string)(this["RoboticsCommodityMarketConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public int DefaultTeamCount {
+            get {
+                return ((int)(this["DefaultTeamCount"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("200000")]
+        public int DefaultTeamBudget {
+            get {
+                return ((int)(this["DefaultTeamBudget"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ↂ")]
+        public string DefaultMonetarySymbol {
+            get {
+                return ((string)(this["DefaultMonetarySymbol"]));
+            }
+            set {
+                this["DefaultMonetarySymbol"] = value;
+            }
+        }
     }
 }

@@ -29,17 +29,17 @@ namespace MarketFrameworkLibrary
             this.number = number;
         }
 
-        public void ProcessTransactions() {
+        public void ProcessTransactions(Market m) {
             List<Transaction> processed = new List<Transaction>();
             foreach(Transaction t in transactions) {
                 t.ProcessTransaction();
                 processed.Add(t);
             }
-            AdjustMarket(processed);
+            AdjustMarket(m, processed);
         }
 
-        private void AdjustMarket(List<Transaction> processed) {
-            foreach(Commodity c in Market.Instance.Commodities) {
+        private void AdjustMarket(Market m, List<Transaction> processed) {
+            foreach(Commodity c in m.commodities) {
                 c.AdjustPrice(Utility.RandomNumber(0.94f, 0.98f));
             }
             foreach(Transaction t in processed) {
